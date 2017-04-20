@@ -1,0 +1,31 @@
+*{
+padding: 0px;
+margin: 0px;
+font-family: 'Calibri','Arial';
+color:white;
+}
+
+body{
+	height:100%;
+	background: #0a0b0d;
+	overflow: hidden;
+}
+
+.wrapper{
+	position: relative;
+	height:100%;
+}
+
+footer{
+	line-height: 55px;
+	position: absolute;
+	display: inline-block;
+	width: 100%;
+	bottom: 0;
+	height: 55px;
+	background: #e67817;
+	text-align:center;
+  	vertical-align: middle;
+  	font-size: 20px;
+  	color: white;
+}
