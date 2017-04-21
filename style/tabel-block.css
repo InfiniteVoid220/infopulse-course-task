@@ -1,12 +1,12 @@
 
-.tabel-block {
+.table-block {
 	float: left;
 	width: 1550px;
 	height: 100%;
 	background-color: #0a0b0d;
 } 
 
-table {
+.table-block table {
 	width: 1470px;
 	margin-left: 22px;
 	margin-top: 22px;
@@ -15,21 +15,65 @@ table {
 	font-size: 20px;
 	border-collapse: collapse;
 
-	border: 1px solid white;
+	/*border: 1px solid white;*/
 }
 
-th {
+.table-block th, td {
+	height: 90px;
+	width: 180px;
+
+	/*border: 1px solid white;*/
+}
+
+.table-block th {
 	color: #e67817;
 	border-bottom: 2px solid #737374;
 }
 
-th, td {
-	height: 90px;
-	width: 183px;
-
-	border: 1px solid white;
+.table-block th:first-child,
+.table-block td:first-child {
+	width: 220px;
 }
 
-th :last-child {
+.table-block th:last-child,
+.table-block td:last-child {
+	width: 120px;
 }
 
+.table-block th:nth-child(2),
+.table-block td:nth-child(2){
+	width: 0px;
+}
+
+/* | */
+.table-block th div,
+.table-block td div{
+	width: 0px;
+	height: 33px;
+	margin: 0 auto;
+	border: 1px solid;
+}
+.table-block th div{
+	border-color: #e67817;
+}
+.table-block td div{
+	border-color: #737374;
+}
+
+.table-block td img {
+	content: url(../images/table-del.png);
+}
+
+
+
+
+
+.table-block .finished td{
+	background-color: #6f0d0f;
+}
+.table-block .finished img {
+	content: url(../images/table-del1.png);
+}
+.table-block .finished div {
+	visibility: hidden;
+}
