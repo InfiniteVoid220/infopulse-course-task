@@ -71,7 +71,7 @@
 
 /* hover */
 .table-block tbody tr:hover{
-	background-color: rgba(53, 62, 68, 0.5);
+	background-color: #353e44;
 }
 .table-block tbody tr:hover td:last-child img{
 	content: url(../images/table-del1.png);
