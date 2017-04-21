@@ -79,7 +79,7 @@
 
 
 /* finished */
-.table-block .finished td{
+.table-block .finished {
 	background-color: #6f0d0f;
 }
 .table-block .finished img {
