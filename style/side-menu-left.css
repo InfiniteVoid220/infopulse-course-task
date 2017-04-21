@@ -6,3 +6,8 @@
 	background: black;
 }
 
+button{
+	border: 0;
+	background: transparent;
+	margin:14px 0 0 14px;
+}
