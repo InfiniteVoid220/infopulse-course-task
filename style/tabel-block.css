@@ -45,6 +45,10 @@
 	width: 0px;
 }
 
+.table-block tbody tr:nth-child(2n){
+	background-color: #0f1012;
+}
+
 /* | */
 .table-block th div,
 .table-block td div{
@@ -65,10 +69,17 @@
 }
 
 
+/* hover */
+.table-block tbody tr:hover{
+	background-color: rgba(53, 62, 68, 0.5);
+}
+.table-block tbody tr:hover td:last-child img{
+	content: url(../images/table-del1.png);
+}
 
 
-
-.table-block .finished td{
+/* finished */
+.table-block .finished {
 	background-color: #6f0d0f;
 }
 .table-block .finished img {
