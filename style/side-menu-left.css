@@ -1,13 +1,72 @@
 
 .side-menu-left{
+	position: relative;
 	float: left;
 	height: 100%;
 	width: 370px;
 	background: black;
 }
 
-button{
+.top-left-popup-button{
 	border: 0;
+	display: block;
 	background: transparent;
 	margin:14px 0 0 14px;
 }
+
+.search-field{
+	height: 5.6vh;
+	width: 14vw;
+	background: rgba(215, 112, 22,.15);
+	color: rgba(255, 255,255, 0.5);
+	border-style: none;
+	border-bottom: 2px solid #d77016;
+	padding: 0 0 0 10px;
+	margin: 30px 0 0 46px;
+}
+.search-button{
+	height: 34px;
+	overflow: hidden;
+	width: 34px;
+	margin: 10px 0 0 -38px;
+    cursor:pointer;
+    border: none;
+}
+
+.checkbox-block{
+	position: relative;
+	display: block;
+	width: 14vw;
+	background: rgba(255, 255,255,.1);
+	margin: 27px auto;
+	padding: 0 5px 0 5px;
+	border-bottom: 2px solid #d77016;
+}
+
+.checkbox-group td{
+	width: 7vw;
+	padding-left: 5px;
+	height: 73px;
+}	
+
+.css-checkbox {
+	position: absolute; 
+    transform: scale(0); 
+}
+
+.css-checkbox+.css-label {
+	padding-left:50px;
+    height:33px; 
+	display:inline-block;
+	line-height:35px;
+	background:transparent url(../images/check_anim.png);
+	background-repeat:no-repeat;
+	background-position: 0 0;
+	font-size:18px;
+	text-transform: uppercase;
+}
+
+.css-checkbox:checked+.css-label{
+    background-position: 0 -38px;
+}
+
