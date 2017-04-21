@@ -1,7 +1,35 @@
 
-.tabel-block{
+.tabel-block {
 	float: left;
 	width: 1550px;
 	height: 100%;
 	background-color: #0a0b0d;
 } 
+
+table {
+	width: 1470px;
+	margin-left: 22px;
+	margin-top: 22px;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 20px;
+	border-collapse: collapse;
+
+	border: 1px solid white;
+}
+
+th {
+	color: #e67817;
+	border-bottom: 2px solid #737374;
+}
+
+th, td {
+	height: 90px;
+	width: 183px;
+
+	border: 1px solid white;
+}
+
+th :last-child {
+}
+
