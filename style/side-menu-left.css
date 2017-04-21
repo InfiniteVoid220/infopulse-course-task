@@ -6,22 +6,20 @@
 	width: 370px;
 	background: black;
 }
-
 .top-left-popup-button{
 	border: 0;
 	display: block;
 	background: transparent;
 	margin:14px 0 0 14px;
 }
-
 .search-field{
 	height: 5.6vh;
 	width: 14vw;
 	background: rgba(215, 112, 22,.15);
-	color: rgba(255, 255,255, 0.5);
+	color: rgba(255,255,255, 0.5);
 	border-style: none;
 	border-bottom: 2px solid #d77016;
-	padding: 0 0 0 10px;
+	padding-right:10px;
 	margin: 30px 0 0 46px;
 }
 .search-button{
@@ -32,7 +30,6 @@
     cursor:pointer;
     border: none;
 }
-
 .checkbox-block{
 	position: relative;
 	display: block;
@@ -42,18 +39,15 @@
 	padding: 0 5px 0 5px;
 	border-bottom: 2px solid #d77016;
 }
-
 .checkbox-group td{
 	width: 7vw;
 	padding-left: 5px;
 	height: 73px;
 }	
-
 .css-checkbox {
 	position: absolute; 
     transform: scale(0); 
 }
-
 .css-checkbox+.css-label {
 	padding-left:50px;
     height:33px; 
@@ -69,4 +63,20 @@
 .css-checkbox:checked+.css-label{
     background-position: 0 -38px;
 }
-
+/*datapicker*/
+[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+[type="date"] {
+  	height: 5.6vh;
+	width: 14vw;
+	background: rgba(215, 112, 22,.15) url(../images/data-icon.png)  99% 10% no-repeat ;
+	color: rgba(255,255,255, 0.5);
+	border-style: none;
+	border-bottom: 2px solid #d77016;
+	padding-right:10px;
+	margin: 30px 0 0 46px;
+}
