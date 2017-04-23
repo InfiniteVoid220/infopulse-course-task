@@ -5,6 +5,11 @@
 	height: 100%;
 	width: 370px;
 	background: black;
-	display: none;
+	display: block;
 }
+
+.project-name{
+	margin-top: 122px;
+}
+
 
