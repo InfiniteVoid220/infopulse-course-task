@@ -1,8 +1,8 @@
 
 .table-block {
-	float: left;
+	float: right;
 	width: 1550px;
-	height: 100%;
+	min-height: 1014px;
 	background-color: #0a0b0d;
 } 
 
@@ -77,7 +77,6 @@
 .table-block tbody tr:hover td:last-child img{
 	content: url(../images/table-del1.png);
 }
-
 .table-block tr {
 	transition-property: background-color;
 	transition-duration: 0.5s;

@@ -1,8 +1,8 @@
 
 .side-menu-left{
-	position: relative;
-	float: left;
-	height: 100%;
+	position: fixed;
+	left: 0px;
+	height: 1014px;
 	width: 370px;
 	background: black;
 }
