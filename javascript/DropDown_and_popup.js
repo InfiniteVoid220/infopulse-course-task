@@ -42,19 +42,21 @@ window.onclick = function(event) {
             DropdownOptions.style.display="none";
             DropdownButton.style.borderBottom="2px solid #d77016";
             DropdownButton.style.background="rgba(215, 112, 22,.15) url(../images/expand-less.png) no-repeat right top";
+            DropdownButton = null;
+            DropdownOptions = null;
         }
     }
 
-if(!event.target.matches("#show-right"))//закрыть меню
-{
-    if (event.target.matches(".side-menu-right") 
-        || event.target.matches(".side-menu-right *")) {
-       return;
+    if(!event.target.matches("#show-right"))//закрыть меню
+    {
+        if (event.target.matches(".side-menu-right") 
+            || event.target.matches(".side-menu-right *")) {
+           return;
+        }
+        else{
+        document.getElementById("right-menu").style.display="none";
+        }
     }
-    else{
-    document.getElementById("right-menu").style.display="none";
-    }
-}
 
 }
 
@@ -66,7 +68,7 @@ function show_or_hide_left(){//работа слевой панелью
     var menu=document.getElementById("left-menu");
     var tabel=document.getElementById("tb-block");
 
-    if(window.getComputedStyle(menu, null).getPropertyValue("display")=="none")
+    if(menu.style.getPropertyValue("display")=="none")
         {
             menu.style.display="block";
             tabel.style.width="1550px";

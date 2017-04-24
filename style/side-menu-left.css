@@ -36,16 +36,16 @@
 	padding: 0 5px 0 5px;
 	border-bottom: 2px solid #d77016;
 }
-.checkbox-group td{
+.checkbox-block td{
 	width: 7vw;
 	padding-left: 5px;
 	height: 73px;
 }	
-.css-checkbox {
+.checkbox-block input {
 	position: absolute; 
     transform: scale(0); 
 }
-.css-checkbox+.css-label {
+.checkbox-block input + label {
 	display:inline-block;
 	background: url(../images/check_anim.png) no-repeat;
 	height:33px; 
@@ -55,9 +55,6 @@
 	text-transform: uppercase;
 }
 
-.css-checkbox:checked+.css-label{
+.checkbox-block input:checked + label{
     background-position: 0 -38px;
-}
-.tst{
-	border-bottom: 2px solid #d77016;
 }
