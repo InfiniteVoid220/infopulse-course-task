@@ -16,7 +16,7 @@ function show_or_hide_options(th) { //прячет или открывает е�
     DropdownOptions=th.nextElementSibling;//запомнить блок с елементами текущего списка
 
     //отображение елементов при нажатии на поле списка
-    if(window.getComputedStyle(DropdownOptions, null).getPropertyValue("display")=="none"){
+    if(DropdownOptions.style.getPropertyValue("display")=="none"){
         DropdownOptions.style.display="block";
         DropdownButton.style.borderBottom="2px solid white";
         DropdownButton.style.background="rgba(215, 112, 22,.15) url(../images/expand-more.png) no-repeat right top";
@@ -66,7 +66,7 @@ function show_or_hide_left(){//работа слевой панелью
     var menu=document.getElementById("left-menu");
     var tabel=document.getElementById("tb-block");
 
-    if(window.getComputedStyle(menu, null).getPropertyValue("display")=="none")
+    if(menu.style.getPropertyValue("display")=="none")
         {
             menu.style.display="block";
             tabel.style.width="1550px";
