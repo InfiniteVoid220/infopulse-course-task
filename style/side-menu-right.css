@@ -5,7 +5,7 @@
 	height: 1014px;
 	width: 370px;
 	background: black;
-	display: block;
+	display: none;
 }
 
 .project-name{
@@ -53,6 +53,7 @@ li{
 	line-height: 50px;
 	vertical-align: middle;
 	height: 50px;
+	text-transform:uppercase;
 }
 ul>li:hover{
 	background: rgba(53,62,68,.55);
