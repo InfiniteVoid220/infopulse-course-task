@@ -30,7 +30,7 @@
 .checkbox-block{
 	width: 267px;
 	background: rgba(255, 255,255,.1);
-	margin: 27px auto;
+	margin: 27px 0 0 47px;
 	padding: 0 5px 0 5px;
 	border-bottom: 2px solid #d77016;
 }
@@ -55,4 +55,7 @@
 
 .css-checkbox:checked+.css-label{
     background-position: 0 -38px;
+}
+.tst{
+	border-bottom: 2px solid #d77016;
 }

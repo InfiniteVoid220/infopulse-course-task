@@ -8,6 +8,8 @@
 	<link rel="stylesheet" type="text/css" href="style/side-menu-left.css">
 	<link rel="stylesheet" type="text/css" href="style/side-menu-right.css">
 	<link rel="stylesheet" type="text/css" href="style/tabel-block.css">
+
+	<script type="text/javascript" src="javascript/select-popup.js"></script>
 	
 </head>
 <body>
@@ -176,10 +178,29 @@
 			<input type="date" id="created" class="datapicker">
 
 			<input type="text" name="search" class="members" placeholder="MEMBERS:">
+			
+			<div class="dropdown">
+				<button onclick="show_or_hide_options(this)" id="type-field" class="dropdown-field">TYPE:</button>
+					<ul id="type-options" class="dropdown-options" onclick="set_text(event)">
+						<li><p>1</p></li>
+						<li><p>1</p></li>
+						<li><p>1</p></li>
+						<li><p>1</p></li>
+					</ul>
+			</div>
+
+			<div class="dropdown">
+				<button onclick="show_or_hide_options(this)" id="type-field" class="dropdown-field">TYPE:</button>
+					<ul id="type-options" class="dropdown-options" onclick="set_text(event)">
+						<li>1</li>
+						<li>1</li>
+						<li>1</li>
+						<li>1</li>
+					</ul>
+			</div>
+					<button class="create">CREATE</button>
 		</aside>
-
 	</main>
-
 	<footer>
 			INFOPUSLE COURSE DASHBORD @ 2016
 	</footer>
