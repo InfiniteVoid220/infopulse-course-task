@@ -5,6 +5,63 @@
 	height: 1014px;
 	width: 370px;
 	background: black;
-	display: none;
+	display: block;
 }
 
+.project-name{
+	margin-top: 122px;
+}
+
+select{
+	width: 277px;
+}
+
+option{
+	height: 50px;
+	line-height: 100px;
+	background: black;
+	border: none;
+}
+.dropdown{
+		position: relative;
+		margin: 27px 0 0 46px;
+}
+.dropdown-field {
+	position: relative;
+	height: 56px;
+	width: 277px;
+	background: rgba(215, 112, 22,.15) url(../images/expand-less.png) no-repeat right top;
+	color: rgba(255,255,255, 0.5);
+	border-style: none;
+	border-bottom: 2px solid #d77016;
+}
+
+.dropdown-options {
+    display: none;
+    text-align:center;
+    position: absolute;
+    left:0;
+    width: 277px;
+    background-color:rgba(215, 112, 22,.15);
+    z-index: 1;
+    border-bottom:2px solid #d77016;
+}
+
+li{
+	display: block;
+	width: 277px;
+	line-height: 50px;
+	vertical-align: middle;
+	height: 50px;
+}
+ul>li:hover{
+	background: rgba(53,62,68,.55);
+}
+.create{
+	text-align: left;
+	padding-left: 30px;
+	background: #e67817;
+	margin:300px 0 0 47px;
+	width: 277px;
+	height: 58px;
+}
