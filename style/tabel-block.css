@@ -1,12 +1,12 @@
 
 .table-block {
-	float: right;
+	float: left;
+	display: block;
 	width: 1550px;
-	min-height: 1014px;
+	height: 1014px;
+	overflow: scroll;
 	background-color: #0a0b0d;
 } 
-
-
 .table-block table {
 	width: 95%;
 	margin-left: 1.5%;

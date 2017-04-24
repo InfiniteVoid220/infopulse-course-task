@@ -9,14 +9,14 @@
 	<link rel="stylesheet" type="text/css" href="style/side-menu-right.css">
 	<link rel="stylesheet" type="text/css" href="style/tabel-block.css">
 
-	<script type="text/javascript" src="javascript/DropDown.js"></script>
+	<script type="text/javascript" src="javascript/DropDown_and_popup.js"></script>
 	
 </head>
 <body>
 
-		<button class="top-left-popup-button"></button>
+		<button id="show-or-hide-left" onclick ="show_or_hide_left()" class="top-left-popup-button"></button>
 
-		<aside class="side-menu-left">
+		<aside id="left-menu" class="side-menu-left">
 			<input type="text" name="search" class="search-field" placeholder="SEARCH:">
 			
 			<button class="search-button"></button>
@@ -54,7 +54,7 @@
 		</aside>
 			
 
-		<section class="table-block">
+		<section id="tb-block" class="table-block">
 			<table>
 				<thead>
 					<tr>
@@ -67,7 +67,7 @@
 						<th>STATUS</th>
 						<th>CUSTOMER</th>
 						<th>
-							<img  id="show-right"onclick="show_or_hide()" src="images/table-header-add.png">
+							<img  id="show-right"onclick="show_right()" src="images/table-header-add.png">
 						</th>
 					</tr>
 				</thead>

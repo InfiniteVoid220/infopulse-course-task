@@ -1,18 +1,13 @@
 
 .side-menu-left{
-	position: fixed;
-	left: 0px;
-	height: 1014px;
 	float: left;
-	height: 100%;
+	height: 1080px;
 	width: 370px;
 	background: black;
 	display: block;
 }
-
 .top-left-popup-button{
 	border: none;
-	display: block;
 	position: fixed;
 	left: 23px;
 	top: 20px;

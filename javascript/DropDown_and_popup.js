@@ -53,6 +53,22 @@ if(!event.target.matches("#show-right"))
 
 }
 
-function show_or_hide(){
+function show_right(){
     document.getElementById("right-menu").style.display="block";
+}
+function show_or_hide_left(){
+    var button=document.getElementById("show-or-hide-left");
+    var menu=document.getElementById("left-menu");
+    var tabel=document.getElementById("tb-block");
+
+    if(window.getComputedStyle(menu, null).getPropertyValue("display")=="none")
+        {
+            menu.style.display="block";
+            tabel.style.width="1550px";
+        }
+    else
+        {
+            menu.style.display="none";
+            tabel.style.width="1920px";
+        }
 }
