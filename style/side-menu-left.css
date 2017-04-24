@@ -1,5 +1,8 @@
 
 .side-menu-left{
+	position: fixed;
+	left: 0px;
+	height: 1014px;
 	float: left;
 	height: 100%;
 	width: 370px;

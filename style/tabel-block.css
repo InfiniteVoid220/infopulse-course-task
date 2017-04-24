@@ -1,8 +1,8 @@
 
 .table-block {
-	float: left;
+	float: right;
 	width: 1550px;
-	height: 100%;
+	min-height: 1014px;
 	background-color: #0a0b0d;
 } 
 
@@ -49,6 +49,10 @@
 	background-color: #0f1012;
 }
 
+.table-block td img {
+	content: url(../images/table-del.png);
+}
+
 /* | */
 .table-block th div,
 .table-block td div{
@@ -64,17 +68,18 @@
 	border-color: #737374;
 }
 
-.table-block td img {
-	content: url(../images/table-del.png);
-}
 
 
 /* hover */
 .table-block tbody tr:hover{
-	background-color: rgba(53, 62, 68, 0.5);
+	background-color: #353e44;
 }
 .table-block tbody tr:hover td:last-child img{
 	content: url(../images/table-del1.png);
+}
+.table-block tr {
+	transition-property: background-color;
+	transition-duration: 0.5s;
 }
 
 
