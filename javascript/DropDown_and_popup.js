@@ -1,23 +1,27 @@
+/*-----------------------------------Выпадающий список--------------------------------*/
 
-var DropdownButton=null;
-var DropdownOptions=null;
-function show_or_hide_options(th) {  
+/*переменные для текущего списка*/
+var DropdownButton=null;//текущий список
+var DropdownOptions=null;//елементи текущего списка
 
-    if(DropdownButton!=th && DropdownButton!=null) {
+function show_or_hide_options(th) { //прячет или открывает елементи списка 
+
+    if(DropdownButton!=th && DropdownButton!=null) {//скрыть если нажали на другой список
         DropdownOptions.style.display="none";
         DropdownButton.style.borderBottom="2px solid #d77016";
         DropdownButton.style.background="rgba(215, 112, 22,.15) url(../images/expand-less.png) no-repeat right top";
     }
 
-    DropdownButton=th;
-    DropdownOptions=th.nextElementSibling;
+    DropdownButton=th;//запомнить текущий список
+    DropdownOptions=th.nextElementSibling;//запомнить блок с елементами текущего списка
 
+    //отображение елементов при нажатии на поле списка
     if(window.getComputedStyle(DropdownOptions, null).getPropertyValue("display")=="none"){
         DropdownOptions.style.display="block";
         DropdownButton.style.borderBottom="2px solid white";
         DropdownButton.style.background="rgba(215, 112, 22,.15) url(../images/expand-more.png) no-repeat right top";
     }   
-    else{
+    else{//скрыть если список уже открыт
         DropdownOptions.style.display="none";
         DropdownButton.style.borderBottom="2px solid #d77016";
         DropdownButton.style.background="rgba(215, 112, 22,.15) url(../images/expand-less.png) no-repeat right top";
@@ -25,14 +29,15 @@ function show_or_hide_options(th) {
     
 }
 
- function set_text(event) {
+ function set_text(event) {//записывает в поле списка данные полученые с выбраного елемента
     DropdownButton.innerHTML = event.target.innerHTML;
 }
 
-   
-/*Закрыть меню если нажать в другое место окна*/
+/*------------------------------------------------------------------------------------*/
+
+/*Закрыть меню или список если нажать в другое место окна*/
 window.onclick = function(event) {
-    if(DropdownButton!=null){
+    if(DropdownButton!=null){//закрыть список
         if (!event.target.matches("#"+DropdownButton.id)) {
             DropdownOptions.style.display="none";
             DropdownButton.style.borderBottom="2px solid #d77016";
@@ -40,7 +45,7 @@ window.onclick = function(event) {
         }
     }
 
-if(!event.target.matches("#show-right"))
+if(!event.target.matches("#show-right"))//закрыть меню
 {
     if (event.target.matches(".side-menu-right") 
         || event.target.matches(".side-menu-right *")) {
@@ -53,11 +58,11 @@ if(!event.target.matches("#show-right"))
 
 }
 
-function show_right(){
+function show_right(){//отобразить правую панель
     document.getElementById("right-menu").style.display="block";
 }
-function show_or_hide_left(){
-    var button=document.getElementById("show-or-hide-left");
+
+function show_or_hide_left(){//работа слевой панелью
     var menu=document.getElementById("left-menu");
     var tabel=document.getElementById("tb-block");
 

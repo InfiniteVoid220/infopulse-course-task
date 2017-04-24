@@ -4,7 +4,6 @@
 	display: block;
 	width: 1550px;
 	height: 1014px;
-	overflow: scroll;
 	background-color: #0a0b0d;
 } 
 .table-block table {
@@ -69,8 +68,6 @@
 	border-color: #737374;
 }
 
-
-
 /* hover */
 .table-block tbody tr:hover{
 	background-color: #353e44;
@@ -93,4 +90,11 @@
 }
 .table-block .finished div {
 	visibility: hidden;
+}
+.table-block thead, tbody { display: block; }
+
+.table-block tbody {
+    height: 891px;      
+    overflow-y: auto;
+    overflow-x: hidden;
 }

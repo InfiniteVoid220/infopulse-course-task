@@ -6,10 +6,11 @@
 	user-select:none;
 	border: none;
 }
-::-webkit-scrollbar {
-display: none;
 
+::-webkit-scrollbar {
+	display: none;
 }
+
 *:focus {
     outline: none;
 }
