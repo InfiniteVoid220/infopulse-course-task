@@ -7,15 +7,19 @@
 	height: 100%;
 	width: 370px;
 	background: black;
+	display: block;
 }
 
 .top-left-popup-button{
 	border: none;
 	display: block;
+	position: fixed;
+	left: 23px;
+	top: 20px;
+	z-index: 10;
 	width: 36px;
 	height: 24px;
 	background: url(../images/left-side-button.png) no-repeat;
-	margin:23px 0 0 23px;
 }
 
 .search-field{
