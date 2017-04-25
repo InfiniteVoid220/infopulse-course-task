@@ -6,10 +6,14 @@
 	height: 1014px;
 	background-color: #0a0b0d;
 } 
-.table-block table {
+
+.table-block > table {
 	width: 95%;
 	margin-left: 1.5%;
 	margin-top: 1.5%;
+}
+
+.table-block table {
 	text-align: center;
 	vertical-align: middle;
 	font-size: 20px;
@@ -91,10 +95,18 @@
 .table-block .finished div {
 	visibility: hidden;
 }
-.table-block thead, tbody { display: block; }
 
-.table-block tbody {
-    height: 891px;      
-    overflow-y: auto;
-    overflow-x: hidden;
+
+
+
+#wrapper-scroll {
+	position: relative;
+	width: 95%;
+	margin-left: 1.5%;
+	height: 900px;
+	overflow: hidden;
+}
+
+#wrapper-scroll table {
+	position: absolute;
 }

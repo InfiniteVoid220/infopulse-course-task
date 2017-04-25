@@ -79,3 +79,16 @@ function show_or_hide_left(){//работа слевой панелью
             tabel.style.width="1920px";
         }
 }
+
+
+
+
+    var myScroll; 
+
+    function loaded () {
+        myScroll = new IScroll('#wrapper-scroll', {scrollbars: true, mouseWheel: true, interactiveScrollbars: true });
+    }
+    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, isPassive() ? {
+        capture: false,
+        passive: false
+    } : false);

@@ -10,9 +10,10 @@
 	<link rel="stylesheet" type="text/css" href="style/tabel-block.css">
 
 	<script type="text/javascript" src="javascript/DropDown_and_popup.js"></script>
-	
+	<script type="text/javascript" src="javascript/iscroll.js"></script>
+
 </head>
-<body>
+<body onload="loaded()">
 
 		<button id="show-or-hide-left" onclick ="show_or_hide_left()" class="top-left-popup-button"></button>
 
@@ -71,6 +72,9 @@
 						</th>
 					</tr>
 				</thead>
+			</table>
+			<div id="wrapper-scroll">
+			<table>
 				<tbody>
 					<tr class="finished">
 						<td>PROJECT NAME</td>
@@ -295,6 +299,7 @@
 					</tr>
 				</tbody>
 			</table>
+			</div>
 		</section>
 
 		<aside id="right-menu" class="side-menu-right">
