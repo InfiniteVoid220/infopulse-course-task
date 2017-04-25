@@ -98,15 +98,3 @@
 
 
 
-
-#wrapper-scroll {
-	position: relative;
-	width: 95%;
-	margin-left: 1.5%;
-	height: 900px;
-	overflow: hidden;
-}
-
-#wrapper-scroll table {
-	position: absolute;
-}

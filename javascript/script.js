@@ -77,17 +77,13 @@ function show_or_hide_left(){//работа слевой панелью
     else
         {
             menu.style.display="none";
-            tabel.style.width="1920px";
+            tabel.style.width="100vw";
         }
 }
-
-
-
-
     var myScroll; 
 
     function loaded () {
-        myScroll = new IScroll('#wrapper-scroll', {scrollbars: true, mouseWheel: true, interactiveScrollbars: true });
+        myScroll = new IScroll('#wrapper-scroll', {scrollbars: false, mouseWheel: true, interactiveScrollbars: true });
     }
     document.addEventListener('touchmove', function (e) { e.preventDefault(); }, isPassive() ? {
         capture: false,

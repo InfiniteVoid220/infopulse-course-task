@@ -28,14 +28,17 @@
 	background: url(../images/lupa.png) no-repeat;
 	width: 34px;
 	margin-left:-42px;
-	padding-bottom: 8px; 	
+	padding-bottom: 4px; 	
     cursor: pointer;
 }
 .checkbox-block{
-	width: 267px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	width: 247px;
 	background: rgba(255, 255,255,.1);
 	margin: 27px 0 0 47px;
-	padding: 0 5px 0 5px;
+	padding: 0 15px 0 15px;
 	border-bottom: 2px solid #d77016;
 }
 
@@ -45,14 +48,13 @@
 }
 .checkbox-block input + label {
 	display:inline-block;
+	margin: 15px 0 15px 0;
 	background: url(../images/check_anim.png) no-repeat;
 	height:33px; 
 	padding-left:50px;
 	line-height:35px;
 	font-size:18px;
 	text-transform: uppercase;
-	width: 62px;
-	margin:15px 0 15px 10px;
 }
 
 .checkbox-block input:checked + label{
