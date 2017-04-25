@@ -85,8 +85,8 @@
 .table-block tbody tr:hover{
 	background-color: #353e44;
 }
-.table-block tbody tr:hover td:last-child img{
-	content: url(../images/table-del1.png);
+.table-block tbody tr:hover td:last-child button{
+	background: url(../images/table-del1.png) no-repeat center center;
 }
 .table-block tr {
 	transition-property: background-color;
