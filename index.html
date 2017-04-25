@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 	<meta charset="UTF-8">
 	<title>Document</title>
 	
@@ -17,40 +18,27 @@
 		<button id="show-or-hide-left" onclick ="show_or_hide_left()" class="top-left-popup-button"></button>
 
 		<aside id="left-menu" class="side-menu-left">
-			<input type="text" name="search" class="search-field" placeholder="SEARCH:">
-			
-			<button class="search-button"></button>
-			
-			<div class="checkbox-block">
-				<table>
+			<form name="left-form">
+				<input type="text" name="search" class="search-field" placeholder="SEARCH:">
 				
-					<tr>
-						<td>
-							<input type="checkbox" id="web" checked>
-							<label for="web">web</label>
-						</td>
-						<td>
-							<input type="checkbox" id="desktop" checked>
-							<label for="desktop">Desktop</label> 
-						</td>
-					</tr>
+				<button type="button" class="search-button"></button>
+				
+				<div class="checkbox-block">
+					<input type="checkbox" id="web" checked>
+					<label for="web">web</label>
 
-					<tr>
-						<td>
-							<input type="checkbox" id="mobile" checked>
-							<label for="mobile">mobile</label>
-						</td>
-						<td>
-							<input type="checkbox" id="support" checked>
-							<label for="support">support</label> 
-						</td>
-					</tr>
-				</table>
+					<input type="checkbox" id="desktop" checked>
+					<label for="desktop">Desktop</label> 
 
-			</div>
+					<input type="checkbox" id="mobile" checked>
+					<label for="mobile">mobile</label>
 
-			<input type="date" id="search-date" class="datapicker">
+					<input type="checkbox" id="support" checked>
+					<label for="support">support</label> 
+				</div>
 
+				<input type="date" id="search-date" class="datapicker">
+			</form>
 		</aside>
 			
 
@@ -67,7 +55,7 @@
 						<th>STATUS</th>
 						<th>CUSTOMER</th>
 						<th>
-							<img  id="show-right"onclick="show_right()" src="images/table-header-add.png">
+							<img  id="show-right" onclick="show_right()" src="images/table-header-add.png">
 						</th>
 					</tr>
 				</thead>
@@ -298,35 +286,36 @@
 		</section>
 
 		<aside id="right-menu" class="side-menu-right">
-			<input type="text" id="project-name" class="project-name" placeholder="PROJECT NAME:">
+			<form name="right-form">
+				<input type="text" id="project-name" class="project-name" placeholder="PROJECT NAME:">
 
-			<input type="date" id="due-date" class="datapicker">
-			<input type="date" id="created" class="datapicker">
+				<input type="date" id="due-date" class="datapicker">
+				<input type="date" id="created" class="datapicker">
 
-			<input type="text" name="search" class="members" placeholder="MEMBERS:">
-			
-			<div class="dropdown">
-				<button onclick="show_or_hide_options(this)" id="type-field" class="dropdown-field">TYPE:</button>
-					<ul id="type-options" class="dropdown-options" onclick="set_text(event)">
-						<li>1</li>
-						<li>1</li>
-						<li>1</li>
-						<li>1</li>
-					</ul>
-			</div>
+				<input type="text" name="search" class="members" placeholder="MEMBERS:">
+				
+				<div class="dropdown">
+					<button  type="button" onclick="show_or_hide_options(this)" id="type-field" class="dropdown-field">TYPE:</button>
+						<ul id="type-options" class="dropdown-options" onclick="set_text(event)">
+							<li>1</li>
+							<li>1</li>
+							<li>1</li>
+							<li>1</li>
+						</ul>
+				</div>
 
-			<div class="dropdown">
-				<button onclick="show_or_hide_options(this)" id="customer-field" class="dropdown-field">Customers:</button>
-					<ul id="customer-options" class="dropdown-options" onclick="set_text(event)">
-						<li>jone</li>
-						<li>david</li>
-						<li>bill</li>
-						<li>alexander rohas</li>
-					</ul>
-			</div>
-			
-			<button class="create">CREATE</button>
-
+				<div class="dropdown">
+					<button  type="button" onclick="show_or_hide_options(this)" id="customer-field" class="dropdown-field">Customers:</button>
+						<ul id="customer-options" class="dropdown-options" onclick="set_text(event)">
+							<li>jone</li>
+							<li>david</li>
+							<li>bill</li>
+							<li>alexander rohas</li>
+						</ul>
+				</div>
+				
+				<button  type="button" class="create">CREATE</button>
+			</form>
 		</aside>
 	</main>
 	<footer>

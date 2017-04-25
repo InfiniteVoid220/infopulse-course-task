@@ -17,6 +17,7 @@
 
 input,select{
 	height: 56px;
+	font-size: 20px;
 	width: 267px;
 	background: rgba(215, 112, 22,.15);
 	color: rgba(255,255,255, 0.5);

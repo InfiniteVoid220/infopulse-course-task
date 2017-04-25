@@ -37,7 +37,6 @@ function show_or_hide_options(th) { //прячет или открывает е�
 
 /*Закрыть меню или список если нажать в другое место окна*/
 window.onclick = function(event) {
-
     if(DropdownButton!=null){//закрыть список
         if (!event.target.matches("#"+DropdownButton.id)) {
             DropdownOptions.style.display="none";
@@ -52,7 +51,7 @@ window.onclick = function(event) {
     {
         if (event.target.matches(".side-menu-right") 
             || event.target.matches(".side-menu-right *")) {
-            return;
+           return;
         }
         else{
         document.getElementById("right-menu").style.display="none";
