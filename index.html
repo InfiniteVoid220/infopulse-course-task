@@ -19,7 +19,7 @@
 		<button id="show-or-hide-left" onclick ="show_or_hide_left()" class="top-left-popup-button"></button>
 
 		<aside id="left-menu" class="side-menu-left">
-			<form name="left-form">
+			<form id="search-form">
 				<input type="text" name="search" class="search-field" placeholder="SEARCH:">
 				
 				<button type="button" class="search-button"></button>
@@ -37,13 +37,13 @@
 					<input type="checkbox" id="support" checked>
 					<label for="support">support</label> 
 				</div>
-
-				<input type="date" id="search-date" class="datapicker">
+				<input placeholder="Your Date" id="search-date" class="datapicker" type="text" onmouseover="(this.type='date')">
+				<p id="demo"></p>
 			</form>
 		</aside>
 			
 
-		<section id="tb-block" class="table-block">
+		<section id="tb-block" class="table-block"> 
 			<table>
 				<thead>
 					<tr>
@@ -62,7 +62,7 @@
 				</thead>
 			</table>
 			<div id="wrapper-scroll">
-			<table>
+			<table id="data">
 				<tbody>
 					<tr class="finished">
 						<td>PROJECT NAME</td>
@@ -74,7 +74,7 @@
 						<td>STATUS</td>
 						<td>CUSTOMER</td>
 						<td>
-							<button></button>
+							<button onclick="delete_row(this)"></button>
 						</td>		
 					</tr>
 					<tr>
@@ -87,7 +87,7 @@
 						<td>STATUS</td>
 						<td>CUSTOMER</td>
 						<td>
-							<button></button>
+							<button onclick="delete_row(this)"></button>
 						</td>		
 					</tr>
 					<tr>
@@ -100,7 +100,7 @@
 						<td>STATUS</td>
 						<td>CUSTOMER</td>
 						<td>
-							<button></button>
+							<button onclick="delete_row(this)"></button>
 						</td>		
 					</tr>
 					<tr>
@@ -113,7 +113,7 @@
 						<td>STATUS</td>
 						<td>CUSTOMER</td>
 						<td>
-							<button></button>
+							<button onclick="delete_row(this)"></button>
 						</td>		
 					</tr>
 					<tr>
@@ -126,7 +126,7 @@
 						<td>STATUS</td>
 						<td>CUSTOMER</td>
 						<td>
-							<button></button>
+							<button onclick="delete_row(this)"></button>
 						</td>		
 					</tr>
 					<tr>
@@ -139,7 +139,7 @@
 						<td>STATUS</td>
 						<td>CUSTOMER</td>
 						<td>
-							<button></button>
+							<button onclick="delete_row(this)"></button>
 						</td>		
 					</tr>
 					<tr>
@@ -152,7 +152,7 @@
 						<td>STATUS</td>
 						<td>CUSTOMER</td>
 						<td>
-							<button></button>
+							<button onclick="delete_row(this)"></button>
 						</td>		
 					</tr>
 					<tr>
@@ -165,7 +165,7 @@
 						<td>STATUS</td>
 						<td>CUSTOMER</td>
 						<td>
-							<button></button>
+							<button onclick="delete_row(this)"></button>
 						</td>		
 					</tr>
 					<tr>
@@ -178,7 +178,7 @@
 						<td>STATUS</td>
 						<td>CUSTOMER</td>
 						<td>
-							<button></button>
+							<button onclick="delete_row(this)"></button>
 						</td>		
 					</tr>
 					<tr>
@@ -191,7 +191,7 @@
 						<td>STATUS</td>
 						<td>CUSTOMER</td>
 						<td>
-							<button></button>
+							<button onclick="delete_row(this)"></button>
 						</td>		
 					</tr>
 					<tr>
@@ -204,7 +204,7 @@
 						<td>STATUS</td>
 						<td>CUSTOMER</td>
 						<td>
-							<button></button>
+							<button onclick="delete_row(this)"></button>
 						</td>		
 					</tr>
 					<tr>
@@ -217,7 +217,7 @@
 						<td>STATUS</td>
 						<td>CUSTOMER</td>
 						<td>
-							<button></button>
+							<button onclick="delete_row(this)"></button>
 						</td>		
 					</tr>
 					<tr>
@@ -230,7 +230,7 @@
 						<td>STATUS</td>
 						<td>CUSTOMER</td>
 						<td>
-							<button></button>
+							<button onclick="delete_row(this)"></button>
 						</td>		
 					</tr>
 					<tr>
@@ -243,7 +243,7 @@
 						<td>STATUS</td>
 						<td>CUSTOMER</td>
 						<td>
-							<button></button>
+							<button onclick="delete_row(this)"></button>
 						</td>		
 					</tr>
 					<tr>
@@ -256,7 +256,7 @@
 						<td>STATUS</td>
 						<td>CUSTOMER</td>
 						<td>
-							<button></button>
+							<button onclick="delete_row(this)"></button>
 						</td>		
 					</tr>
 					<tr>
@@ -269,7 +269,7 @@
 						<td>STATUS</td>
 						<td>CUSTOMER</td>
 						<td>
-							<button></button>
+							<button onclick="delete_row(this)"></button>
 						</td>		
 					</tr>
 					<tr>
@@ -282,7 +282,7 @@
 						<td>STATUS</td>
 						<td>CUSTOMER</td>
 						<td>
-							<button></button>
+							<button onclick="delete_row(this)"></button>
 						</td>		
 					</tr>
 				</tbody>
@@ -291,11 +291,12 @@
 		</section>
 
 		<aside id="right-menu" class="side-menu-right">
-			<form name="right-form">
+			<form id="create-form">
 				<input type="text" id="project-name" class="project-name" placeholder="PROJECT NAME:">
+				
+				<input placeholder="DUE DATE" id="due-date" class="datapicker" type="text" onmouseover="(this.type='date')">
 
-				<input type="date" id="due-date" class="datapicker">
-				<input type="date" id="created" class="datapicker">
+				<input placeholder="CREATED" id="created" class="datapicker" type="text" onmouseover="(this.type='date')">
 
 				<input type="text" name="search" class="members" placeholder="MEMBERS:">
 				
@@ -311,15 +312,15 @@
 
 				<div class="dropdown">
 					<button  type="button" onclick="show_or_hide_options(this)" id="customer-field" class="dropdown-field">Customers:</button>
-						<ul id="customer-options" class="dropdown-options" onclick="set_text(event)">
-							<li>jone</li>
-							<li>david</li>
-							<li>bill</li>
-							<li>alexander rohas</li>
-						</ul>
+					<ul id="customer-options" class="dropdown-options" onclick="set_text(event)">
+						<li>jone</li>
+						<li>david</li>
+						<li>bill</li>
+						<li>alexander rohas</li>
+					</ul>
 				</div>
 				
-				<button  type="button" class="create">CREATE</button>
+				<button onclick="add_row(this)" type="button" class="create">CREATE</button>
 			</form>
 		</aside>
 	</main>

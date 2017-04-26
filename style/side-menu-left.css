@@ -3,8 +3,8 @@
 	float: left;
 	height: 1014px;
 	width: 370px;
+	transition: 0.5s;
 	background: black;
-	display: block;
 }
 .top-left-popup-button{
 	border: none;
@@ -28,7 +28,7 @@
 	background: url(../images/lupa.png) no-repeat;
 	width: 34px;
 	margin-left:-42px;
-	padding-bottom: 8px; 	
+	padding-bottom: 2px; 	
     cursor: pointer;
 }
 .checkbox-block{

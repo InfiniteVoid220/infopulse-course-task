@@ -6,11 +6,9 @@
 	user-select:none;
 	border: none;
 }
-
-::-webkit-scrollbar {
-	display: none;
+body{
+	background: #0a0b0d;
 }
-
 *:focus {
     outline: none;
 }
@@ -47,12 +45,21 @@ footer{
 }
 
 /*datapicker*/
-.datapicker::-webkit-inner-spin-button {
-  display: none;
+input::-webkit-outer-spin-button, /* Removes arrows */
+input::-webkit-inner-spin-button, /* Removes arrows */
+input::-webkit-clear-button 
+{ /* Removes blue cross */
+	-webkit-appearance: none;
+	 margin: 0;
 }
+
 .datapicker::-webkit-calendar-picker-indicator {
-  opacity: 0;
+	opacity: 0;
+	height: 100%;/*увеличение кликабельной области*/
+	width: 50%;
 }
+
 .datapicker{
 	background: rgba(215, 112, 22,.15) url(../images/data-icon.png)  99% 10% no-repeat ;
 } 
+

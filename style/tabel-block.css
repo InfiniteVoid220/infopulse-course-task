@@ -1,9 +1,11 @@
 
 .table-block {
 	float: left;
-	display: block;
 	width: 1550px;
 	height: 1014px;
+	display: block;
+    transition-property: width;
+    transition-duration: 0.5s;
 	background-color: #0a0b0d;
 } 
 

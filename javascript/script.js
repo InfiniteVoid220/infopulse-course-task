@@ -31,6 +31,7 @@ function show_or_hide_options(th) { //прячет или открывает е�
 
  function set_text(event) {//записывает в поле списка данные полученые с выбраного елемента
     DropdownButton.innerHTML = event.target.innerHTML;
+    DropdownButton.previousElementSibling.value=event.target.innerHTML;
 }
 
 /*------------------------------------------------------------------------------------*/
@@ -38,6 +39,7 @@ function show_or_hide_options(th) { //прячет или открывает е�
 /*Закрыть меню или список если нажать в другое место окна*/
 window.onclick = function(event) {
 
+   // alert(event.target.parentElement.parentElement.rowIndex);
     if(DropdownButton!=null){//закрыть список
         if (!event.target.matches("#"+DropdownButton.id)) {
             DropdownOptions.style.display="none";
@@ -58,7 +60,6 @@ window.onclick = function(event) {
         document.getElementById("right-menu").style.display="none";
         }
     }
-
 }
 
 function show_right(){//отобразить правую панель
@@ -68,16 +69,15 @@ function show_right(){//отобразить правую панель
 function show_or_hide_left(){//работа слевой панелью
     var menu=document.getElementById("left-menu");
     var tabel=document.getElementById("tb-block");
-
-    if(menu.style.getPropertyValue("display")=="none")
+    if(tabel.style.getPropertyValue("width")=="1920px")
         {
-            menu.style.display="block";
+            menu.style.marginLeft="0";
             tabel.style.width="1550px";
         }
     else
         {
-            menu.style.display="none";
-            tabel.style.width="100vw";
+            menu.style.marginLeft="-370px";
+            tabel.style.width="1920px";
         }
 }
     var myScroll; 
@@ -89,3 +89,36 @@ function show_or_hide_left(){//работа слевой панелью
         capture: false,
         passive: false
     } : false);
+
+function delete_row(x){
+    var current_row=x.parentElement.parentElement.rowIndex;
+    document.getElementById("data").deleteRow(current_row);
+}
+
+function add_row(x){
+   /* var c = document.getElementById("right-form").children;
+    var txt = "";
+    var i;
+   
+    for (i = 0; i < c.length-1; i++) {
+        if(c[i].value!="" && i<4)
+        {
+            txt = txt + c[i].value+ "<br>";
+        }
+        if(i>=4){
+            if(c[i].children[0].innerHTML!="TYPE:" &&  c[i].children[0].innerHTML!="Customers:"){
+                txt = txt + c[i].children[0].innerHTML+ "<br>";
+            }
+        }
+
+    }
+
+    document.getElementById("demo").innerHTML = txt;
+    var table = document.getElementById("myTable");
+    var row = table.insertRow(0);
+    
+    for(var i=0;i<2;i++){
+      var cell = row.insertCell(0);
+      cell.innerHTML = "NEW CELL"+i;
+    }*/
+}
