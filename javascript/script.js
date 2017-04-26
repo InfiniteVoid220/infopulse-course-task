@@ -37,7 +37,10 @@ function show_or_hide_options(th) { //прячет или открывает е�
 /*------------------------------------------------------------------------------------*/
 
 /*Закрыть меню или список если нажать в другое место окна*/
+document.getElementById('show-or-hide-left').addEventListener('click', show_or_hide_left);
+
 window.onclick = function(event) {
+
 
    // alert(event.target.parentElement.parentElement.rowIndex);
     if(DropdownButton!=null){//закрыть список
