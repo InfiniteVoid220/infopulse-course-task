@@ -57,13 +57,13 @@ window.onclick = function(event) {
             return;
         }
         else{
-        document.getElementById("right-menu").style.right = "-370px"
+        document.getElementById("right-menu").style.transform = "translateX(370px)";
         }
     }
 }
 
 function show_right(){//отобразить правую панель
-    document.getElementById("right-menu").style.right = "0px"
+    document.getElementById("right-menu").style.transform = "translateX(-370px)";
 }
 
 function show_or_hide_left(){//работа слевой панелью
