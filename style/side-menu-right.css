@@ -5,7 +5,8 @@
 	height: 1014px;
 	width: 370px;
 	background: black;
-	transition: 0.2s;
+	transition: transform 0.2s;
+	transform: translateZ(0);
 }
 
 .project-name{

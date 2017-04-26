@@ -3,7 +3,7 @@
 	float: left;
 	height: 1014px;
 	width: 370px;
-	transition: 0.2s;
+	transition: transform 0.2s;
 	transform: translateZ(0);
 	background: black;
 }
