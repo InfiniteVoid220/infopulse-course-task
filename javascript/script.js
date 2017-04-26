@@ -57,27 +57,30 @@ window.onclick = function(event) {
             return;
         }
         else{
-        document.getElementById("right-menu").style.right = "-370px"
+        document.getElementById("right-menu").style.transform="translateX(0) translateZ(0)";
         }
     }
 }
 
 function show_right(){//отобразить правую панель
-    document.getElementById("right-menu").style.right = "0px"
+    document.getElementById("right-menu").style.transform="translateX(-370px) translateZ(0)";
 }
+
+var hide=false;
 
 function show_or_hide_left(){//работа слевой панелью
     var menu=document.getElementById("left-menu");
     var tabel=document.getElementById("tb-block");
-    if(tabel.style.getPropertyValue("width")=="1920px")
-        {
-            menu.style.marginLeft="0";
-            tabel.style.width="1550px";
+    if(hide){
+            menu.style.transform="translateX(0) translateZ(0)";
+            tabel.style.transform ="scaleX(1) translateZ(0)";
+            hide=false;
         }
     else
         {
-            menu.style.marginLeft="-370px";
-            tabel.style.width="1920px";
+            menu.style.transform="translateX(-370px) translateZ(0)";
+            tabel.style.transform = "scaleX(1.238) translateX(-130px) translateZ(0)";
+            hide=true;
         }
 }
     var myScroll; 

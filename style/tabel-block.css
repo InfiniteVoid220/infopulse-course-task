@@ -1,10 +1,10 @@
 
 .table-block {
-	float: left;
+	float: right;
 	width: 1550px;
 	height: 1014px;
 	display: block;
-    transition: width 0.2s;
+    transition: 0.2s;
     transform: translateZ(0);
 	background-color: #0a0b0d;
 } 
