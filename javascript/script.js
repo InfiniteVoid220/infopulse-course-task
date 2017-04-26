@@ -126,48 +126,78 @@ function add_row(x){
       cell.innerHTML = "NEW CELL"+i;
     }*/
 }
+
+function toDate(dateStr) {
+    var parts = dateStr.split(".");
+    return new Date(parts[2], parts[1], parts[0]);
+}
+
 function sort_table(n) {
-  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("data");
-  switching = true;
-  //alert(new Date(table.getElementsByTagName("TR")[1].getElementsByTagName("TD")[n].innerHTML));
-  dir = "asc"; //направление сортировки
+    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+    table = document.getElementById("data");
+    switching = true;
+    dir = "asc"; //направление сортировки
 
-  /*Исполнять пока изменяется порядок*/
-  while (switching) {
-
-    switching = false;
-    rows = table.getElementsByTagName("TR");//отбираем все ряды
-
-    for (i = 0; i < (rows.length-1); i++) {
-
-      shouldSwitch = false;
-      /*елементи для сравнения*/
-      x = rows[i].getElementsByTagName("TD")[n];
-      y = rows[i + 1].getElementsByTagName("TD")[n];
-      /*обмен местами в зависимости от направления*/
-      if (dir == "asc") {
-        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-          shouldSwitch= true; 
-          break;//перейти к обмену местами
+    /*Исполнять пока изменяется порядок*/
+    while (switching) {
+        switching = false;
+        rows = table.getElementsByTagName("TR");//отбираем все ряды
+        for (i = 0; i < (rows.length-1); i++) {
+            shouldSwitch = false;
+            /*елементи для сравнения*/
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+            /*обмен местами в зависимости от направления*/
+            if (dir == "asc") {
+                if(n==2 || n==3){  //сортировка дат 
+                    if(toDate(x.innerHTML)>toDate(y.innerHTML))
+                    { 
+                    shouldSwitch= true; 
+                    break;//перейти к обмену местами
+                    }
+                }
+                else { //сортировка текста
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                      shouldSwitch= true; 
+                      break;//перейти к обмену местами
+                    }
+                }
+            } 
+            else 
+            {
+              if (dir == "desc") {
+                if(n==2 || n==3){  //сортировка дат
+                    if(toDate(x.innerHTML)<toDate(y.innerHTML))
+                    {
+                        shouldSwitch= true; 
+                        break;//перейти к обмену местами
+                    }
+                }
+                else{//сортировка текста
+                if (x.innerHTML.toLowerCase()<y.innerHTML.toLowerCase()) 
+                    {
+                      shouldSwitch= true;
+                      break;//перейти к обмену местами 
+                    }
+                 }
+              }
+            }
         }
-      } else if (dir == "desc") {
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-          shouldSwitch= true;
-          break;//перейти к обмену местами 
+
+        if (shouldSwitch) 
+        {
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+          switchcount ++;      
+        } 
+        else 
+        {
+          /*смена направления сортировки, если не произошло изменений.*/
+          if (switchcount == 0 && dir == "asc") 
+          {
+            dir = "desc";
+            switching = true;
+          }
         }
-      }
     }
-    if (shouldSwitch) {
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-      switchcount ++;      
-    } else {
-      /*смена направления сортировки, если не произошло изменений.*/
-      if (switchcount == 0 && dir == "asc") {
-        dir = "desc";
-        switching = true;
-      }
-    }
-  }
 }
