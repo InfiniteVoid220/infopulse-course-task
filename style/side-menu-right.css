@@ -6,7 +6,6 @@
 	width: 370px;
 	background: black;
 	transition: transform 0.2s;
-	transform: translateZ(0);
 }
 
 .project-name{

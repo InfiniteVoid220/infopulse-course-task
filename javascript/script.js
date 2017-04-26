@@ -57,13 +57,13 @@ window.onclick = function(event) {
             return;
         }
         else{
-        document.getElementById("right-menu").style.transform="translateX(0) translateZ(0)";
+        document.getElementById("right-menu").style.transform="translateX(0) ";
         }
     }
 }
 
 function show_right(){//отобразить правую панель
-    document.getElementById("right-menu").style.transform="translateX(-370px) translateZ(0)";
+    document.getElementById("right-menu").style.transform="translateX(-370px) ";
 }
 
 var hide=false;
@@ -72,26 +72,27 @@ function show_or_hide_left(){//работа слевой панелью
     var menu=document.getElementById("left-menu");
     var tabel=document.getElementById("tb-block");
     if(hide){
-            menu.style.transform="translateX(0) translateZ(0)";
-            tabel.style.transform ="scaleX(1) translateZ(0)";
+            menu.style.transform="translateX(0)";
+            tabel.style.transform ="scaleX(1)";
             hide=false;
         }
     else
         {
-            menu.style.transform="translateX(-370px) translateZ(0)";
-            tabel.style.transform = "scaleX(1.238) translateX(-130px) translateZ(0)";
+            menu.style.transform="translateX(-370px)";
+            tabel.style.transform = "scaleX(1.238) translateX(-130px)";
             hide=true;
         }
 }
-    var myScroll; 
 
-    function loaded () {
-        myScroll = new IScroll('#wrapper-scroll', {scrollbars: false, mouseWheel: true, interactiveScrollbars: true });
-    }
-    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, isPassive() ? {
-        capture: false,
-        passive: false
-    } : false);
+var myScroll; 
+
+function loaded () {
+    myScroll = new IScroll('#wrapper-scroll', {scrollbars: false, mouseWheel: true, interactiveScrollbars: true });
+}
+document.addEventListener('touchmove', function (e) { e.preventDefault(); }, isPassive() ? {
+    capture: false,
+    passive: false
+} : false);
 
 function delete_row(x){
     var current_row=x.parentElement.parentElement.rowIndex;
@@ -124,4 +125,49 @@ function add_row(x){
       var cell = row.insertCell(0);
       cell.innerHTML = "NEW CELL"+i;
     }*/
+}
+function sort_table(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("data");
+  switching = true;
+  //alert(new Date(table.getElementsByTagName("TR")[1].getElementsByTagName("TD")[n].innerHTML));
+  dir = "asc"; //направление сортировки
+
+  /*Исполнять пока изменяется порядок*/
+  while (switching) {
+
+    switching = false;
+    rows = table.getElementsByTagName("TR");//отбираем все ряды
+
+    for (i = 0; i < (rows.length-1); i++) {
+
+      shouldSwitch = false;
+      /*елементи для сравнения*/
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      /*обмен местами в зависимости от направления*/
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          shouldSwitch= true; 
+          break;//перейти к обмену местами
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          shouldSwitch= true;
+          break;//перейти к обмену местами 
+        }
+      }
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      switchcount ++;      
+    } else {
+      /*смена направления сортировки, если не произошло изменений.*/
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
 }
