@@ -4,6 +4,7 @@
 	height: 1014px;
 	width: 370px;
 	transition: 0.2s;
+	transform: translateZ(0);
 	background: black;
 }
 .top-left-popup-button{
