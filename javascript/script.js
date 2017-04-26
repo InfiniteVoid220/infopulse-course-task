@@ -173,7 +173,8 @@ function sort_table(n) {
                         break;//перейти к обмену местами
                     }
                 }
-                else{//сортировка текста
+                else
+                {//сортировка текста
                 if (x.innerHTML.toLowerCase()<y.innerHTML.toLowerCase()) 
                     {
                       shouldSwitch= true;
