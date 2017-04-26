@@ -1,11 +1,12 @@
 
 .side-menu-right{
 	position: fixed;
-	right: 0;
+	right: -370px;
 	height: 1014px;
 	width: 370px;
 	background: black;
-	display: none;
+
+	transition: right 0.3s;
 }
 
 .project-name{
