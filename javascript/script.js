@@ -1,3 +1,10 @@
+
+/*var items=document.getElementsByTagName('th');
+for( var i = 0; i < items.length-1; i++ ) {
+        items[i].addEventListener('click',sort_table.bind(null, i));
+}
+*/
+
 /*-----------------------------------Выпадающий список--------------------------------*/
 
 /*переменные для текущего списка*/
@@ -7,49 +14,42 @@ var DropdownOptions=null;//елементи текущего списка
 function show_or_hide_options(th) { //прячет или открывает елементи списка 
 
     if(DropdownButton!=th && DropdownButton!=null) {//скрыть если нажали на другой список
-        DropdownOptions.style.display="none";
-        DropdownButton.style.borderBottom="2px solid #d77016";
-        DropdownButton.style.background="rgba(215, 112, 22,.15) url(../images/expand-less.png) no-repeat right top";
+      //  DropdownOptions.style.display="none";
+        DropdownButton.classList.remove("show");
+        DropdownButton.classList.add("hide");
     }
 
-    DropdownButton=th;//запомнить текущий список
+    DropdownButton=th;//запомнить текущий   список
     DropdownOptions=th.nextElementSibling;//запомнить блок с елементами текущего списка
 
     //отображение елементов при нажатии на поле списка
-    if(DropdownOptions.style.getPropertyValue("display")=="none"){
-        DropdownOptions.style.display="block";
-        DropdownButton.style.borderBottom="2px solid white";
-        DropdownButton.style.background="rgba(215, 112, 22,.15) url(../images/expand-more.png) no-repeat right top";
+    if(DropdownButton.classList.contains("hide")){
+       // DropdownOptions.style.display="block";
+        DropdownButton.classList.remove("hide");
+        DropdownButton.classList.add("show");
     }   
     else{//скрыть если список уже открыт
-        DropdownOptions.style.display="none";
-        DropdownButton.style.borderBottom="2px solid #d77016";
-        DropdownButton.style.background="rgba(215, 112, 22,.15) url(../images/expand-less.png) no-repeat right top";
+      //  DropdownOptions.style.display="none";
+        DropdownButton.classList.remove("show");
+        DropdownButton.classList.add("hide");
     }
-    
 }
 
  function set_text(event) {//записывает в поле списка данные полученые с выбраного елемента
-    DropdownButton.innerHTML = event.target.innerHTML;
-    DropdownButton.previousElementSibling.value=event.target.innerHTML;
+    DropdownButton.innerHTML=event.target.innerHTML;
 }
 
 /*------------------------------------------------------------------------------------*/
 
-/*Закрыть меню или список если нажать в другое место окна*/
 document.getElementById('show-or-hide-left').addEventListener('click', show_or_hide_left);
 
+/*Закрыть меню или список если нажать в другое место окна*/
 window.onclick = function(event) {
-
-
    // alert(event.target.parentElement.parentElement.rowIndex);
     if(DropdownButton!=null){//закрыть список
         if (!event.target.matches("#"+DropdownButton.id)) {
-            DropdownOptions.style.display="none";
-            DropdownButton.style.borderBottom="2px solid #d77016";
-            DropdownButton.style.background="rgba(215, 112, 22,.15) url(../images/expand-less.png) no-repeat right top";
-            DropdownButton = null;
-            DropdownOptions = null;
+            DropdownButton.classList.remove("show");
+            DropdownButton.classList.add("hide");
         }
     }
 

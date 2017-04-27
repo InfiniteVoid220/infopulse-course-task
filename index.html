@@ -46,14 +46,14 @@
 			<table>
 				<thead>
 					<tr>
-						<th onclick="sort_table(0)">PROJECT NAME</th>
+						<th>PROJECT NAME</th>
 						<th><div></div></th>
-						<th onclick="sort_table(2)">DUE DATE</th>
-						<th onclick="sort_table(3)">CREATED</th>
-						<th onclick="sort_table(4)">MEMBERS</th>
-						<th onclick="sort_table(5)">TYPE</th>
-						<th onclick="sort_table(6)">STATUS</th>
-						<th onclick="sort_table(7)">CUSTOMER</th>
+						<th>DUE DATE</th>
+						<th>CREATED</th>
+						<th>MEMBERS</th>
+						<th>TYPE</th>
+						<th>STATUS</th>
+						<th>CUSTOMER</th>
 						<th>
 							<button id="show-right" onclick="show_right()" ></button>
 						</th>
@@ -300,7 +300,7 @@
 				<input type="text" name="search" class="members" placeholder="MEMBERS:">
 				
 				<div class="dropdown">
-					<button  type="button" onclick="show_or_hide_options(this)" id="type-field" class="dropdown-field">TYPE:</button>
+					<button  type="button" onclick="show_or_hide_options(this)" id="type-field" class="dropdown-field hide">TYPE:</button>
 						<ul id="type-options" class="dropdown-options" onclick="set_text(event)">
 							<li>1</li>
 							<li>1</li>
@@ -310,7 +310,7 @@
 				</div>
 
 				<div class="dropdown">
-					<button  type="button" onclick="show_or_hide_options(this)" id="customer-field" class="dropdown-field">Customers:</button>
+					<button  type="button" onclick="show_or_hide_options(this)" id="customer-field" class="dropdown-field hide">Customers:</button>
 					<ul id="customer-options" class="dropdown-options" onclick="set_text(event)">
 						<li>jone</li>
 						<li>david</li>
