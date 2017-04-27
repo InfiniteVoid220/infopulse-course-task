@@ -31,7 +31,7 @@
 	padding-bottom: 2px; 	
     cursor: pointer;
 }
-.checkbox-set{
+.checkboxes{
 	width: 267px;
 	background: rgba(255, 255,255,.1);
 	margin: 27px 0 0 47px;
@@ -39,11 +39,11 @@
 	border-bottom: 2px solid #d77016;
 }
 
-.checkbox-set input {
+.checkboxes input {
 	position: absolute; 
     transform: scale(0); 
 }
-.checkbox-set input + label {
+.checkboxes input + label {
 	display:inline-block;
 	background: url(../images/check_anim.png) no-repeat;
 	height:33px; 
@@ -55,6 +55,6 @@
 	margin:15px 0 15px 10px;
 }
 
-.checkbox-set input:checked + label{
+.checkboxes input:checked + label{
     background-position: 0 -38px;
 }
