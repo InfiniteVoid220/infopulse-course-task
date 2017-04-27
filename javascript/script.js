@@ -1,10 +1,45 @@
 
+window.addEventListener('load', loaded);
+document.getElementById('show-or-hide-left').addEventListener('click', show_or_hide_left);
+document.getElementById('show-right').addEventListener('click', show_right);
+var buttons_del = document.getElementById('data').getElementsByTagName('button');
+for(let i = 0; i < buttons_del.length; i++){
+  buttons_del[i].addEventListener('click', function(){
+    delete_row(this);
+  });
+}
+var thead_buttons = document.getElementById('tb-block').getElementsByTagName('th');
+for(var i = 0; i < thead_buttons.length-1; i++){
+  thead_buttons[i].addEventListener('click', function(){
+    alert(this.cellIndex);
+    sort_table(this.cellIndex);
+  });
+}
+document.getElementById('customer-field').addEventListener('click', function(){
+  show_or_hide_options(this);
+});
+document.getElementById('type-field').addEventListener('click', function(){
+  show_or_hide_options(this);
+});
+document.getElementById('type-options').addEventListener('click', function(){
+  set_text(event);
+});
+document.getElementById('customer-options').addEventListener('click', function(){
+  set_text(event);
+});
+document.getElementById('butt-add-row').addEventListener('click', function(){
+  add_row(this);
+});
+
 /*-----------------------------------Выпадающий список--------------------------------*/
 
 /*переменные для текущего списка*/
 var DropdownButton=null;//текущий список
 var DropdownOptions=null;//елементи текущего списка
 
+ function set_text(event) {//записывает в поле списка данные полученые с выбраного елемента
+    DropdownButton.innerHTML = event.target.innerHTML;
+ }
 function show_or_hide_options(th) { //прячет или открывает елементи списка 
 
     if(DropdownButton!=th && DropdownButton!=null) {//скрыть если нажали на другой список
@@ -26,9 +61,6 @@ function show_or_hide_options(th) { //прячет или открывает е�
     }
 }
 
- function set_text(event) {//записывает в поле списка данные полученые с выбраного елемента
-    DropdownButton.innerHTML=event.target.innerHTML;
-}
 
 /*------------------------------------------------------------------------------------*/
 
@@ -56,6 +88,7 @@ window.onclick = function(event) {
 }
 
 function show_right(){//отобразить правую панель
+    alert("show_right exec");
     document.getElementById("right-menu").style.transform="translateX(-370px) ";
 }
 
@@ -77,8 +110,8 @@ function show_or_hide_left(){//работа слевой панелью
         }
 }
 
+/*             ISCROLL            */
 var myScroll; 
-
 function loaded () {
     myScroll = new IScroll('#wrapper-scroll', {scrollbars: false, mouseWheel: true, interactiveScrollbars: true });
 }
@@ -87,12 +120,17 @@ document.addEventListener('touchmove', function (e) { e.preventDefault(); }, isP
     passive: false
 } : false);
 
+
+
+
 function delete_row(x){
+    alert("delete_row exec");
     var current_row=x.parentElement.parentElement.rowIndex;
     document.getElementById("data").deleteRow(current_row);
 }
 
 function add_row(x){
+    alert('add row exec');
    /* var c = document.getElementById("right-form").children;
     var txt = "";
     var i;
@@ -126,6 +164,8 @@ function toDate(dateStr) {
 }
 
 function sort_table(n) {
+    alert("function sort_table with parameter: " + n );
+  
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     table = document.getElementById("data");
     switching = true;
