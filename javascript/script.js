@@ -11,7 +11,6 @@ for(let i = 0; i < buttons_del.length; i++){
 var thead_buttons = document.getElementById('tb-block').getElementsByTagName('th');
 for(var i = 0; i < thead_buttons.length-1; i++){
   thead_buttons[i].addEventListener('click', function(){
-    alert(this.cellIndex);
     sort_table(this.cellIndex);
   });
 }
@@ -88,7 +87,6 @@ window.onclick = function(event) {
 }
 
 function show_right(){//отобразить правую панель
-    alert("show_right exec");
     document.getElementById("right-menu").style.transform="translateX(-370px) ";
 }
 
@@ -124,13 +122,11 @@ document.addEventListener('touchmove', function (e) { e.preventDefault(); }, isP
 
 
 function delete_row(x){
-    alert("delete_row exec");
     var current_row=x.parentElement.parentElement.rowIndex;
     document.getElementById("data").deleteRow(current_row);
 }
 
 function add_row(x){
-    alert('add row exec');
    /* var c = document.getElementById("right-form").children;
     var txt = "";
     var i;
@@ -164,8 +160,6 @@ function toDate(dateStr) {
 }
 
 function sort_table(n) {
-    alert("function sort_table with parameter: " + n );
-  
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     table = document.getElementById("data");
     switching = true;
