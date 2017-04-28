@@ -29,10 +29,10 @@ document.getElementById('type-field').addEventListener('click', function(){
   DropdownHendler.showOrHide(this);
 });
 document.getElementById('type-options').addEventListener('click', function(){
-  DropdownList.setText(event);
+  DropdownHendler.setText(event);
 });
 document.getElementById('customer-options').addEventListener('click', function(){
-  DropdownList.setText(event);
+  DropdownHendler.setText(event);
 });
 document.getElementById('butt-add-row').addEventListener('click', function(){
   add_row(this);

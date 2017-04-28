@@ -5,7 +5,6 @@ function DropdownList(){//класс для выпадающего списка
     var DropdownOptions=null;//елементи текущего списка
 
     this.setText = function(e) {//записывает в поле списка данные полученые с выбраного елемента
-        alert("sd");
         DropdownButton.innerHTML = e.target.innerHTML;
     }
 
