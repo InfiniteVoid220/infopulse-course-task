@@ -1,11 +1,12 @@
 /*-----------------------------------Выпадающий список--------------------------------*/
-function DropdownMenu(){//класс для выпадающего списка
+function DropdownList(){//класс для выпадающего списка
 
     var DropdownButton=null;//текущий список
     var DropdownOptions=null;//елементи текущего списка
 
-    function set_text (event) {//записывает в поле списка данные полученые с выбраного елемента
-        DropdownButton.innerHTML = event.target.innerHTML;
+    this.setText = function(e) {//записывает в поле списка данные полученые с выбраного елемента
+        alert("sd");
+        DropdownButton.innerHTML = e.target.innerHTML;
     }
 
     this.showOrHide = function (th) { //прячет или открывает елементи списка 

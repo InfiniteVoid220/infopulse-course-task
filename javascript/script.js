@@ -1,7 +1,7 @@
 (function (window, document) { 
 
 var sort = new SortTable();
-var DropdownHendler = new DropdownMenu();
+var DropdownHendler = new DropdownList();
 var toggleHandler = new menusToggleHandler();
 
 
@@ -29,10 +29,10 @@ document.getElementById('type-field').addEventListener('click', function(){
   DropdownHendler.showOrHide(this);
 });
 document.getElementById('type-options').addEventListener('click', function(){
-  set_text(event);
+  DropdownList.setText(event);
 });
 document.getElementById('customer-options').addEventListener('click', function(){
-  set_text(event);
+  DropdownList.setText(event);
 });
 document.getElementById('butt-add-row').addEventListener('click', function(){
   add_row(this);
