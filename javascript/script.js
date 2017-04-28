@@ -1,14 +1,18 @@
+(function (window, document) { 
+    
+var sort = new SortTable();
+var DropdownHendler = new DropdownMenu();
 
 window.addEventListener('load', loaded);
-document.getElementById('show-or-hide-left').addEventListener('click', show_or_hide_left);
+document.getElementById('show-or-hide-left').addEventListener('click', showOrHideLeft);
 document.getElementById('show-right').addEventListener('click', show_right);
+
 var buttons_del = document.getElementById('data').getElementsByTagName('button');
 for(let i = 0; i < buttons_del.length; i++){
   buttons_del[i].addEventListener('click', function(){
     delete_row(this);
   });
 }
-var sort = new SortTable();
 var thead_buttons = document.getElementById('tb-block').getElementsByTagName('th');
 for(var i = 0; i < thead_buttons.length-1; i++){
   thead_buttons[i].addEventListener('click', function(){
@@ -16,10 +20,10 @@ for(var i = 0; i < thead_buttons.length-1; i++){
   });
 }
 document.getElementById('customer-field').addEventListener('click', function(){
-  show_or_hide_options(this);
+  DropdownHendler.showOrHide(this);
 });
 document.getElementById('type-field').addEventListener('click', function(){
-  show_or_hide_options(this);
+  DropdownHendler.showOrHide(this);
 });
 document.getElementById('type-options').addEventListener('click', function(){
   set_text(event);
@@ -30,91 +34,28 @@ document.getElementById('customer-options').addEventListener('click', function()
 document.getElementById('butt-add-row').addEventListener('click', function(){
   add_row(this);
 });
-document.getElementById('lupa').addEventListener('click', filter);
-/*-----------------------------------Выпадающий список--------------------------------*/
-
-/*переменные для текущего списка*/
-var DropdownButton=null;//текущий список
-var DropdownOptions=null;//елементи текущего списка
-
-function set_text(event) {//записывает в поле списка данные полученые с выбраного елемента
-    DropdownButton.innerHTML = event.target.innerHTML;
-}
-
-function show_or_hide_options(th) { //прячет или открывает елементи списка 
-
-    if(DropdownButton!=th && DropdownButton!=null) {//скрыть если нажали на другой список
-        DropdownButton.classList.remove("show");
-        DropdownButton.classList.add("hide");
-    }
-
-    DropdownButton=th;//запомнить текущий   список
-    DropdownOptions=th.nextElementSibling;//запомнить блок с елементами текущего списка
-    
-    //отображение елементов при нажатии на поле списка
-    if(DropdownButton.classList.contains("hide")) {
-        DropdownButton.classList.remove("hide");
-        DropdownButton.classList.add("show");
-    } else {//скрыть если список уже открыт
-        DropdownButton.classList.remove("show");
-        DropdownButton.classList.add("hide");
-    }
-}
-
-
-/*------------------------------------------------------------------------------------*/
+//document.getElementById('lupa').addEventListener('click', filter);
 
 /*Закрыть меню или список если нажать в другое место окна*/
 window.onclick = function(event) {
-    if(DropdownButton!=null) {//закрыть список
-        if (!event.target.matches("#"+DropdownButton.id)) {
-            DropdownButton.classList.remove("show");
-            DropdownButton.classList.add("hide");
-        }
-    }
-
+    DropdownHendler.hideOnOutClick(event);
     if(!event.target.matches("#show-right")) {//закрыть меню
         if (event.target.matches(".side-menu-right") 
             || event.target.matches(".side-menu-right *")) {
             return;
         } else {
-        document.getElementById("right-menu").style.transform="translateX(0) ";
+            document.getElementById("right-menu").style.transform="translateX(0) ";
         }
     }
 }
 
-function show_right(){//отобразить правую панель
-    document.getElementById("right-menu").style.transform="translateX(-370px) ";
-}
-
-var hide=false;
-
-function show_or_hide_left(){//работа слевой панелью
-    var menu=document.getElementById("left-menu");
-    var tabel=document.getElementById("tb-block");
-    if(hide){
-            menu.style.transform="translateX(0)";
-            tabel.style.transform ="scaleX(1)";
-            hide=false;
-        } else {
-            menu.style.transform="translateX(-370px)";
-            tabel.style.transform = "scaleX(1.238) translateX(-130px)";
-            hide=true;
-        }
-}
-/*             ISCROLL            */
-var myScroll; 
-function loaded () {
-    myScroll = new IScroll('#wrapper-scroll', {scrollbars: false, mouseWheel: true, interactiveScrollbars: true });
-}
-document.addEventListener('touchmove', function (e) { e.preventDefault(); }, isPassive() ? {
-    capture: false,
-    passive: false
-} : false);
-
 function delete_row(x) {
     var currentRow=x.parentElement.parentElement.rowIndex;
     document.getElementById("data").deleteRow(currentRow);
+}
+
+function show_right(){//отобразить правую панель
+    document.getElementById("right-menu").style.transform="translateX(-370px) ";
 }
 
 function SortTable() {//класс для сортировки
@@ -200,21 +141,23 @@ function SortTable() {//класс для сортировки
     };
 }
 
-function Filter() {//класс для отбора данных с таблицы
+/*function Filter() {//класс для отбора данных с таблицы
+    var i=0;
+    var project_name = document.getElementById("search-field").value.toUpperCase();
+    var = {};
+    var web = document.getElementById("web").value;
+    var web = document.getElementById("web").value;
+    var web = document.getElementById("web").value;
+    var web = document.getElementById("web").value;
 
-    this.search= function(){
-        var input, filter, table, tr, td, i;
-        input = document.getElementById("search-field");
+    var rows = document.getElementById("data").getElementsByTagName("tr");
+    this.flagsActive = function(){
 
-        project_name = input.value.toUpperCase();
-        web = document.getElementById("web").value;
-        /* desktop=document.getElementById("desktop").nextElementSiblin.textContent.toUpperCase();
-        mobile=document.getElementById("mobile").nextElementSiblin.textContent.toUpperCase();
-        support=document.getElementById("support").nextElementSiblin.textContent.toUpperCase();
-        */
-        table = document.getElementById("data");
-        tr = table.getElementsByTagName("tr");
+    }
 
+    this.search = function(){
+        var input, table, tr, td, i;
+       
         for (i = 0; i < tr.length; i++) {
             td = tr[i].getElementsByTagName("td")[0];
             if (td) {
@@ -235,8 +178,8 @@ for( var i = 0; i < items.length-1; i++ ) {
 }
 */
 
-function add_row(x) {
-   /* var c = document.getElementById("right-form").children;
+/*function add_row(x) {
+    var c = document.getElementById("right-form").children;
     var txt = "";
     var i;
    
@@ -260,5 +203,6 @@ function add_row(x) {
     for(var i=0;i<2;i++){
       var cell = row.insertCell(0);
       cell.innerHTML = "NEW CELL"+i;
-    }*/
-}
+    }
+}*/
+})(window, document);
