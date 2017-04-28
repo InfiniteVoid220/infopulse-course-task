@@ -1,4 +1,4 @@
-var sort = new sortTable();
+
 window.addEventListener('load', loaded);
 document.getElementById('show-or-hide-left').addEventListener('click', show_or_hide_left);
 document.getElementById('show-right').addEventListener('click', show_right);
@@ -8,6 +8,7 @@ for(let i = 0; i < buttons_del.length; i++){
     delete_row(this);
   });
 }
+var sort = new SortTable();
 var thead_buttons = document.getElementById('tb-block').getElementsByTagName('th');
 for(var i = 0; i < thead_buttons.length-1; i++){
   thead_buttons[i].addEventListener('click', function(){
@@ -116,12 +117,11 @@ function delete_row(x) {
     document.getElementById("data").deleteRow(currentRow);
 }
 
-function sortTable() {//класс для сортировки
-
-    var rows, switching,i, x, y, shouldSwap, dir, switchcount = 0;
+function SortTable() {//класс для сортировки
+    var rows, swaping,i, x, y, shouldSwap, dir, swapCount = 0;
     //отбираем все ряды
     var rows = document.getElementById("data").getElementsByTagName("TR");
-    var switching = true;
+    var swaping = true;
     var dir = "asc"; //направление сортировки
     var sortType=null;
 
@@ -162,21 +162,21 @@ function sortTable() {//класс для сортировки
 
     function swapRows(){
         rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-        switching = true;
-        switchcount ++;  
+        swaping = true;
+        swapCount ++;  
     }
 
     function setVariablesToDefault(){
-        switching=true;
+        swaping=true;
         dir="asc";
-        switchcount=0;
+        swapCount=0;
     }
 
     this.sortByColumn = function(n) {
         setVariablesToDefault(); 
         defineSortType(n);
-        while (switching) {//Исполнять пока изменяется порядок.
-            switching = false;
+        while (swaping) {//Исполнять пока изменяется порядок.
+            swaping = false;
             for (i = 0; i < (rows.length-1); i++) {
                 shouldSwap = false;
                 x = rows[i].getElementsByTagName("TD")[n];
@@ -192,38 +192,43 @@ function sortTable() {//класс для сортировки
                 } 
             }
             /*смена направления сортировки, если не произошло изменений.*/  
-            if (switchcount == 0 && dir == "asc") {
+            if (swapCount == 0 && dir == "asc") {
                 dir = "desc";
-                switching = true;
+                swaping = true;
             }
         }
     };
 }
 
-function filter() {
-  var input, filter, table, tr, td, i;
-  input = document.getElementById("search-field");
-  
-  project_name = input.value.toUpperCase();
-  web = document.getElementById("web").value;
- /* desktop=document.getElementById("desktop").nextElementSiblin.textContent.toUpperCase();
-  mobile=document.getElementById("mobile").nextElementSiblin.textContent.toUpperCase();
-  support=document.getElementById("support").nextElementSiblin.textContent.toUpperCase();
-*/
-  table = document.getElementById("data");
-  tr = table.getElementsByTagName("tr");
+function Filter() {//класс для отбора данных с таблицы
 
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      if (td.innerHTML.toUpperCase().indexOf(project_name) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }       
-  }
+    this.search= function(){
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("search-field");
+
+        project_name = input.value.toUpperCase();
+        web = document.getElementById("web").value;
+        /* desktop=document.getElementById("desktop").nextElementSiblin.textContent.toUpperCase();
+        mobile=document.getElementById("mobile").nextElementSiblin.textContent.toUpperCase();
+        support=document.getElementById("support").nextElementSiblin.textContent.toUpperCase();
+        */
+        table = document.getElementById("data");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(project_name) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }       
+        }
+    }
+
 }
+
 /*var items=document.getElementsByTagName('th');
 for( var i = 0; i < items.length-1; i++ ) {
         items[i].addEventListener('click',sort_table.bind(null, i));
