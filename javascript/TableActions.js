@@ -1,13 +1,13 @@
 function tableActions(){
 
-    this.deleteRow = functions (x) {
+    this.deleteRow = function (x) {
         var currentRow=x.parentElement.parentElement.rowIndex;
         document.getElementById("data").deleteRow(currentRow);
     }
 
     /*Work in progres*/
 
-    /*function Filter() {//класс для отбора данных с таблицы
+   /* function Filter() {//класс для отбора данных с таблицы
         var i=0;
         var project_name = document.getElementById("search-field").value.toUpperCase();
         var = {};
@@ -38,13 +38,12 @@ function tableActions(){
 
     }
 
-    /*var items=document.getElementsByTagName('th');
+    var items=document.getElementsByTagName('th');
     for( var i = 0; i < items.length-1; i++ ) {
             items[i].addEventListener('click',sort_table.bind(null, i));
     }
-    */
 
-    /*function add_row(x) {
+    function add_row(x) {
         var c = document.getElementById("right-form").children;
         var txt = "";
         var i;
@@ -70,7 +69,7 @@ function tableActions(){
           var cell = row.insertCell(0);
           cell.innerHTML = "NEW CELL"+i;
         }
-    }*/
-
+    }
+*/
 }
 
