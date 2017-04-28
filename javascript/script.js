@@ -1,4 +1,4 @@
-
+var sort = new sortTable();
 window.addEventListener('load', loaded);
 document.getElementById('show-or-hide-left').addEventListener('click', show_or_hide_left);
 document.getElementById('show-right').addEventListener('click', show_right);
@@ -11,7 +11,7 @@ for(let i = 0; i < buttons_del.length; i++){
 var thead_buttons = document.getElementById('tb-block').getElementsByTagName('th');
 for(var i = 0; i < thead_buttons.length-1; i++){
   thead_buttons[i].addEventListener('click', function(){
-    sort_table(this.cellIndex);
+    sort.sortByColumn(this.cellIndex);
   });
 }
 document.getElementById('customer-field').addEventListener('click', function(){
@@ -29,16 +29,17 @@ document.getElementById('customer-options').addEventListener('click', function()
 document.getElementById('butt-add-row').addEventListener('click', function(){
   add_row(this);
 });
-
+document.getElementById('lupa').addEventListener('click', filter);
 /*-----------------------------------Выпадающий список--------------------------------*/
 
 /*переменные для текущего списка*/
 var DropdownButton=null;//текущий список
 var DropdownOptions=null;//елементи текущего списка
 
- function set_text(event) {//записывает в поле списка данные полученые с выбраного елемента
+function set_text(event) {//записывает в поле списка данные полученые с выбраного елемента
     DropdownButton.innerHTML = event.target.innerHTML;
- }
+}
+
 function show_or_hide_options(th) { //прячет или открывает елементи списка 
 
     if(DropdownButton!=th && DropdownButton!=null) {//скрыть если нажали на другой список
@@ -48,13 +49,12 @@ function show_or_hide_options(th) { //прячет или открывает е�
 
     DropdownButton=th;//запомнить текущий   список
     DropdownOptions=th.nextElementSibling;//запомнить блок с елементами текущего списка
-
+    
     //отображение елементов при нажатии на поле списка
-    if(DropdownButton.classList.contains("hide")){
+    if(DropdownButton.classList.contains("hide")) {
         DropdownButton.classList.remove("hide");
         DropdownButton.classList.add("show");
-    }   
-    else{//скрыть если список уже открыт
+    } else {//скрыть если список уже открыт
         DropdownButton.classList.remove("show");
         DropdownButton.classList.add("hide");
     }
@@ -63,24 +63,20 @@ function show_or_hide_options(th) { //прячет или открывает е�
 
 /*------------------------------------------------------------------------------------*/
 
-document.getElementById('show-or-hide-left').addEventListener('click', show_or_hide_left);
-
 /*Закрыть меню или список если нажать в другое место окна*/
 window.onclick = function(event) {
-    if(DropdownButton!=null){//закрыть список
+    if(DropdownButton!=null) {//закрыть список
         if (!event.target.matches("#"+DropdownButton.id)) {
             DropdownButton.classList.remove("show");
             DropdownButton.classList.add("hide");
         }
     }
 
-    if(!event.target.matches("#show-right"))//закрыть меню
-    {
+    if(!event.target.matches("#show-right")) {//закрыть меню
         if (event.target.matches(".side-menu-right") 
             || event.target.matches(".side-menu-right *")) {
             return;
-        }
-        else{
+        } else {
         document.getElementById("right-menu").style.transform="translateX(0) ";
         }
     }
@@ -99,15 +95,12 @@ function show_or_hide_left(){//работа слевой панелью
             menu.style.transform="translateX(0)";
             tabel.style.transform ="scaleX(1)";
             hide=false;
-        }
-    else
-        {
+        } else {
             menu.style.transform="translateX(-370px)";
             tabel.style.transform = "scaleX(1.238) translateX(-130px)";
             hide=true;
         }
 }
-
 /*             ISCROLL            */
 var myScroll; 
 function loaded () {
@@ -118,15 +111,122 @@ document.addEventListener('touchmove', function (e) { e.preventDefault(); }, isP
     passive: false
 } : false);
 
-
-
-
-function delete_row(x){
-    var current_row=x.parentElement.parentElement.rowIndex;
-    document.getElementById("data").deleteRow(current_row);
+function delete_row(x) {
+    var currentRow=x.parentElement.parentElement.rowIndex;
+    document.getElementById("data").deleteRow(currentRow);
 }
 
-function add_row(x){
+function sortTable() {//класс для сортировки
+
+    var rows, switching,i, x, y, shouldSwap, dir, switchcount = 0;
+    var rows = document.getElementById("data").getElementsByTagName("TR");//отбираем все ряды
+    var switching = true;
+    var dir = "asc"; //направление сортировки
+    var sortType=null;
+
+    function toDate(dateStr) {
+        var parts = dateStr.split(".");
+        return new Date(parts[2], parts[1]-1, parts[0]);
+    }
+
+    function defineSortType(tableColumn){
+        if(tableColumn==2 || tableColumn==3) {
+            return "ByDate";
+        } else { 
+            return "ByText";
+        }
+    }
+
+    function compareDate(currentRow, nextRow, direction){
+        if(direction == "asc" 
+           && toDate(currentRow.innerHTML) > toDate(nextRow.innerHTML)){
+            return true;
+        } else if(direction == "desc" 
+                  && toDate(currentRow.innerHTML) < toDate(nextRow.innerHTML)) {
+            return true;
+        }
+            return false;
+    }
+
+    function compareText(currentRow, nextRow, direction){
+        if(direction == "asc" 
+           && currentRow.innerHTML.toLowerCase() > nextRow.innerHTML.toLowerCase()){
+            return true;
+        } else if(direction == "desc" 
+                  && currentRow.innerHTML.toLowerCase() < nextRow.innerHTML.toLowerCase()) {
+            return true;
+        }
+            return false;
+    }
+
+    function swapRows(){
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+        switchcount ++;  
+    }
+
+    this.sortByColumn = function(n) {
+        sortType = defineSortType(n);
+        switching=true;
+        dir="asc";
+        switchcount=0;
+        /*Исполнять пока изменяется порядок*/
+        while (switching) {
+            switching = false;
+            for (i = 0; i < (rows.length-1); i++) {
+                shouldSwap = false;
+                x = rows[i].getElementsByTagName("TD")[n];
+                y = rows[i + 1].getElementsByTagName("TD")[n];
+                /*обмен местами в зависимости от направления*/
+                if (sortType == "ByDate") {
+                    shouldSwap = compareDate(x,y,dir);
+                } else if (sortType == "ByText")  {
+                    shouldSwap = compareText(x,y,dir);
+                }
+                if (shouldSwap) {   
+                    swapRows();
+                } 
+            }
+            /*смена направления сортировки, если не произошло изменений.*/  
+            if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+            }
+        }
+    };
+}
+
+function filter() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("search-field");
+  
+  project_name = input.value.toUpperCase();
+  web = document.getElementById("web").value;
+ /* desktop=document.getElementById("desktop").nextElementSiblin.textContent.toUpperCase();
+  mobile=document.getElementById("mobile").nextElementSiblin.textContent.toUpperCase();
+  support=document.getElementById("support").nextElementSiblin.textContent.toUpperCase();
+*/
+  table = document.getElementById("data");
+  tr = table.getElementsByTagName("tr");
+
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(project_name) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+/*var items=document.getElementsByTagName('th');
+for( var i = 0; i < items.length-1; i++ ) {
+        items[i].addEventListener('click',sort_table.bind(null, i));
+}
+*/
+
+function add_row(x) {
    /* var c = document.getElementById("right-form").children;
     var txt = "";
     var i;
@@ -153,86 +253,3 @@ function add_row(x){
       cell.innerHTML = "NEW CELL"+i;
     }*/
 }
-
-function toDate(dateStr) {
-    var parts = dateStr.split(".");
-    return new Date(parts[2], parts[1], parts[0]);
-}
-
-function sort_table(n) {
-    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-    table = document.getElementById("data");
-    switching = true;
-    dir = "asc"; //направление сортировки
-
-    /*Исполнять пока изменяется порядок*/
-    while (switching) {
-        switching = false;
-        rows = table.getElementsByTagName("TR");//отбираем все ряды
-        for (i = 0; i < (rows.length-1); i++) {
-            shouldSwitch = false;
-            /*елементи для сравнения*/
-            x = rows[i].getElementsByTagName("TD")[n];
-            y = rows[i + 1].getElementsByTagName("TD")[n];
-            /*обмен местами в зависимости от направления*/
-            if (dir == "asc") {
-                if(n==2 || n==3){  //сортировка дат 
-                    if(toDate(x.innerHTML)>toDate(y.innerHTML))
-                    { 
-                    shouldSwitch= true; 
-                    break;//перейти к обмену местами
-                    }
-                }
-                else { //сортировка текста
-                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                      shouldSwitch= true; 
-                      break;//перейти к обмену местами
-                    }
-                }
-            } 
-            else 
-            {
-              if (dir == "desc") {
-                if(n==2 || n==3){  //сортировка дат
-                    if(toDate(x.innerHTML)<toDate(y.innerHTML))
-                    {
-                        shouldSwitch= true; 
-                        break;//перейти к обмену местами
-                    }
-                }
-                else
-                {//сортировка текста
-                if (x.innerHTML.toLowerCase()<y.innerHTML.toLowerCase()) 
-                    {
-                      shouldSwitch= true;
-                      break;//перейти к обмену местами 
-                    }
-                 }
-              }
-            }
-        }
-
-        if (shouldSwitch) 
-        {
-          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-          switching = true;
-          switchcount ++;      
-        } 
-        else 
-        {
-          /*смена направления сортировки, если не произошло изменений.*/
-          if (switchcount == 0 && dir == "asc") 
-          {
-            dir = "desc";
-            switching = true;
-          }
-        }
-    }
-}
-
-
-/*var items=document.getElementsByTagName('th');
-for( var i = 0; i < items.length-1; i++ ) {
-        items[i].addEventListener('click',sort_table.bind(null, i));
-}
-*/
