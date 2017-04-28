@@ -119,7 +119,8 @@ function delete_row(x) {
 function sortTable() {//класс для сортировки
 
     var rows, switching,i, x, y, shouldSwap, dir, switchcount = 0;
-    var rows = document.getElementById("data").getElementsByTagName("TR");//отбираем все ряды
+    //отбираем все ряды
+    var rows = document.getElementById("data").getElementsByTagName("TR");
     var switching = true;
     var dir = "asc"; //направление сортировки
     var sortType=null;
@@ -131,9 +132,9 @@ function sortTable() {//класс для сортировки
 
     function defineSortType(tableColumn){
         if(tableColumn==2 || tableColumn==3) {
-            return "ByDate";
+            sortType = "ByDate";
         } else { 
-            return "ByText";
+            sortType = "ByText";
         }
     }
 
@@ -165,19 +166,22 @@ function sortTable() {//класс для сортировки
         switchcount ++;  
     }
 
-    this.sortByColumn = function(n) {
-        sortType = defineSortType(n);
+    function setVariablesToDefault(){
         switching=true;
         dir="asc";
         switchcount=0;
-        /*Исполнять пока изменяется порядок*/
-        while (switching) {
+    }
+
+    this.sortByColumn = function(n) {
+        setVariablesToDefault(); 
+        defineSortType(n);
+        while (switching) {//Исполнять пока изменяется порядок.
             switching = false;
             for (i = 0; i < (rows.length-1); i++) {
                 shouldSwap = false;
                 x = rows[i].getElementsByTagName("TD")[n];
                 y = rows[i + 1].getElementsByTagName("TD")[n];
-                /*обмен местами в зависимости от направления*/
+                //обмен местами в зависимости от направления
                 if (sortType == "ByDate") {
                     shouldSwap = compareDate(x,y,dir);
                 } else if (sortType == "ByText")  {
