@@ -1,34 +1,48 @@
 function menusToggleHandler () { //обрабочик всплывания менюшек
+    var self = this;
 
-    var isLeftMenuHiden=false;
-    var rightMenu = document.getElementById("right-menu");
-    var leftMenu = document.getElementById("left-menu");
-    var tabel=document.getElementById("tb-block");
+    this.init = function(){
+
+        this.isLeftMenuHiden=false;
+        this.rightMenu = document.getElementById("right-menu");
+        this.leftMenu = document.getElementById("left-menu");
+        this.tabel = document.getElementById("tb-block");
+
+        this.initEvents();
+    } 
+
+    this.initEvents = function(){
+        window.addEventListener('click', function(){ hideRightMenu(); });
+
+        document.getElementById('show-or-hide-left').addEventListener('click',showOrHideLeft);
+        document.getElementById('show-right').addEventListener('click',showRightMenu);
+    }
    
-    this.showOrHideLeft = function (){//работа слевой панелью
-        if(isLeftMenuHiden) {
-                leftMenu.style.transform="translateX(0)";
-                tabel.style.transform ="scaleX(1)";
-                isLeftMenuHiden=false;
-            } else {
-                leftMenu.style.transform="translateX(-370px)";
-                tabel.style.transform = "scaleX(1.238) translateX(-130px)";
-                isLeftMenuHiden=true;
-            }
+    function showOrHideLeft(){//работа слевой панелью
+        if(this.isLeftMenuHiden) {
+            self.leftMenu.style.transform="translateX(0)";
+            self.tabel.style.transform ="scaleX(1)";
+            this.isLeftMenuHiden=false;
+        } else {
+            self.leftMenu.style.transform="translateX(-370px)";
+            self.tabel.style.transform = "scaleX(1.238) translateX(-130px)";
+            this.isLeftMenuHiden=true;
+        }
     }
 
-    this.showRightMenu = function (){//отобразить правую панель
-        rightMenu.style.transform="translateX(-370px) ";
+    function showRightMenu (){//отобразить правую панель
+        self.rightMenu.style.transform="translateX(-370px) ";
     }
 
-    this.hideRightMenu = function (e) {
+    function hideRightMenu () {
         if(!event.target.matches("#show-right")) {//закрыть меню
             if (event.target.matches(".side-menu-right") 
                 || event.target.matches(".side-menu-right *")) {
                 return;
             } else {
-                rightMenu.style.transform="translateX(0) ";
+               self.rightMenu.style.transform="translateX(0) ";
             }
         }
     }
+    this.init();
 }
