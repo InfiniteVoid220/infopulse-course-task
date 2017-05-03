@@ -30,10 +30,13 @@ option{
 	position: relative;
 	height: 56px;
 	width: 277px;
-	background: rgba(215, 112, 22,.15) url(../images/expand-less.png) no-repeat right top;
 	color: rgba(255,255,255, 0.5);
 	border-style: none;
 	border-bottom: 2px solid #d77016;
+    background: rgba(215, 112, 22,.15) url(../images/expand-less.png) no-repeat right top;
+}
+.dropdown-field + .dropdown-options{
+	display: none;
 }
 
 .dropdown-options {
@@ -65,13 +68,6 @@ ul>li:hover{
 	margin:300px 0 0 47px;
 	width: 277px;
 	height: 58px;
-}
-.hide{
-    border-bottom:2px solid #d77016;
-    background:rgba(215, 112, 22,.15) url(../images/expand-less.png) no-repeat right top;
-}
-.hide+.dropdown-options{
-	display: none;
 }
 
 .show{
