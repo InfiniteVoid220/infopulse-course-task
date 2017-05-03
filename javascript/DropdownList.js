@@ -1,41 +1,46 @@
 /*-----------------------------------Выпадающий список--------------------------------*/
-function DropdownList(){//класс для выпадающего списка
+function DropdownList(options){//класс для выпадающего списка
+    var self = this;
 
-    var DropdownButton=null;//текущий список
-    var DropdownOptions=null;//елементи текущего списка
+    this.initEvents = function(){
+        this.selectedItem.addEventListener('click', function(){
+            self.toggle(this);
+        });
+        this.list.addEventListener('click', function(){
+            if (event.target.innerHTML){
+                self.setText(event.target.innerHTML);
+            };
+        });
+          /*Закрыть меню или список если нажать в другое место окна*/
+        window.addEventListener('click', function(){
+            self.hideOnOutClick(event.target);
+        })
 
-    this.setText = function(e) {//записывает в поле списка данные полученые с выбраного елемента
-        DropdownButton.innerHTML = e.target.innerHTML;
     }
 
-    this.showOrHide = function (th) { //прячет или открывает елементи списка 
+    this.init = function(){
+        this.rootEl = options.el,
+        this.selectedItem = this.rootEl.getElementsByClassName('dropdown-field')[0],
+        this.list = this.rootEl.getElementsByClassName('dropdown-options')[0];
+        this.initEvents();
+    } 
 
-        if(DropdownButton!=th && DropdownButton!=null) {//скрыть если нажали на другой список
-            DropdownButton.classList.remove("show");
-            DropdownButton.classList.add("hide");
-        }
+    this.setText = function(text) {
+        this.selectedItem.innerHTML = text;
+    }
 
-        DropdownButton=th;//запомнить текущий   список
-        DropdownOptions=th.nextElementSibling;//запомнить блок с елементами текущего списка
-    
-        //отображение елементов при нажатии на поле списка
-        if(DropdownButton.classList.contains("hide")) {
-            DropdownButton.classList.remove("hide");
-            DropdownButton.classList.add("show");
-        } else {//скрыть если список уже открыт
-            DropdownButton.classList.remove("show");
-            DropdownButton.classList.add("show");
+    this.toggle = function (el) {
+        el.classList.toggle("show");
+    }
+
+    this.hideOnOutClick = function (el){
+        if(this.selectedItem!=null && !el.matches(".dropdown-field")) {
+            this.selectedItem.classList.remove("show");
         }
     }
 
-    this.hideOnOutClick = function (e){
-        if(DropdownButton!=null) {//закрыть список
-            if (!e.target.matches("#"+DropdownButton.id)) {
-                DropdownButton.classList.remove("show");
-                DropdownButton.classList.add("hide");
-            }
-        }
-    }
+  
+    this.init();
 }   
 //классы show и hide находятся в side-menu-right.css
 /*------------------------------------------------------------------------------------*/

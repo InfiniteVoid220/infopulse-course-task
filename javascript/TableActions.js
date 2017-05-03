@@ -42,34 +42,58 @@ function tableActions(){
     for( var i = 0; i < items.length-1; i++ ) {
             items[i].addEventListener('click',sort_table.bind(null, i));
     }
+    */
 
-    function add_row(x) {
-        var c = document.getElementById("right-form").children;
-        var txt = "";
-        var i;
-       
-        for (i = 0; i < c.length-1; i++) {
-            if(c[i].value!="" && i<4)
-            {
-                txt = txt + c[i].value+ "<br>";
-            }
-            if(i>=4){
-                if(c[i].children[0].innerHTML!="TYPE:" &&  c[i].children[0].innerHTML!="Customers:"){
-                    txt = txt + c[i].children[0].innerHTML+ "<br>";
-                }
-            }
+    this.create_row = function(){
+        alert("create_row exec");
 
-        }
-
-        document.getElementById("demo").innerHTML = txt;
-        var table = document.getElementById("myTable");
-        var row = table.insertRow(0);
-        
-        for(var i=0;i<2;i++){
-          var cell = row.insertCell(0);
-          cell.innerHTML = "NEW CELL"+i;
-        }
+        let proj_name = document.getElementById("project-name").value;
+        let due_date = document.getElementById("due-date").value;
+        let created = document.getElementById("created").value;
+        let members = document.getElementById("members").value;
+        let type;
+        let status;
+        add_row(proj_name, due_date, created, members, type, status);
     }
-*/
+
+    function add_row() {
+        alert("add_row exec");
+
+        var table = document.getElementById("data");
+        var row = table.insertRow(0);
+        row.style.background = "blue";
+        var arguments = ["cell0","cell2","cell3","cell4","cell5","cell6"];
+        for(var i = 0, arguments_counter = 0; i < 7; i++){
+            if(i == 1){
+                row.insertCell(i);
+            }
+            else{
+                row.insertCell(i).innerHTML = arguments[arguments_counter];
+                arguments_counter++;
+            }
+        }
+
+        /*
+        row.style.background = "blue";
+        var cell0 = row.insertCell(0);
+        var cell1 = row.insertCell(1);
+        var cell2 = row.insertCell(2);
+        var cell3 = row.insertCell(3);
+        var cell4 = row.insertCell(4);
+        var cell5 = row.insertCell(5);
+        var cell6 = row.insertCell(6);
+        cell0.innerHTML = "Cell0";   
+        cell2.innerHTML = "Cell2";
+        cell3.innerHTML = "Cell3";
+        cell4.innerHTML = "Cell4";
+        cell5.innerHTML = "Cell5";
+        cell6.innerHTML = "Cell6";
+        */
+
+        /*
+        for(var i = 0; i < arguments.length; i++){
+            row.insertCell(i).innerHTML = arguments[i];
+        }*/
+    }
 }
 

@@ -373,11 +373,11 @@
 
 				<input placeholder="CREATED" id="created" class="datapicker" type="text" onmouseover="(this.type='date')">
 
-				<input type="text" name="search" class="members" placeholder="MEMBERS:">
+				<input type="text" id="members" name="search" class="members" placeholder="MEMBERS:">
 				
-				<div class="dropdown">
-					<button  type="button" id="type-field" class="dropdown-field hide">TYPE:</button>
-						<ul id="type-options" class="dropdown-options">
+				<div class="dropdown type-dropdown">
+					<button  type="button" class="dropdown-field">TYPE:</button>
+						<ul class="dropdown-options">
 							<li>web</li>
 							<li>desktop</li>
 							<li>mobile</li>
@@ -385,9 +385,9 @@
 						</ul>
 				</div>
 
-				<div class="dropdown">
-					<button  type="button" id="customer-field" class="dropdown-field hide">Customers:</button>
-					<ul id="customer-options" class="dropdown-options">
+				<div class="dropdown customer-dropdown">
+					<button  type="button" class="dropdown-field">Customers:</button>
+					<ul class="dropdown-options">
 						<li>jone</li>
 						<li>david</li>
 						<li>bill</li>

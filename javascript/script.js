@@ -1,7 +1,9 @@
 (function (window, document) { 
 
 var sort = new SortTable();
-var DropdownHendler = new DropdownList();
+var dropdownHendler1 = new DropdownList({'el': document.getElementsByClassName('type-dropdown')[0]});
+var dropdownHendler = new DropdownList({'el': document.getElementsByClassName('customer-dropdown')[0]});
+
 var toggleHandler = new menusToggleHandler();
 var tableHandler = new tableActions();
 
@@ -22,26 +24,15 @@ for(var i = 0; i < thead_buttons.length-1; i++){
     sort.sortByColumn(this.cellIndex);
   });
 }
-document.getElementById('customer-field').addEventListener('click', function(){
-  DropdownHendler.showOrHide(this);
-});
-document.getElementById('type-field').addEventListener('click', function(){
-  DropdownHendler.showOrHide(this);
-});
-document.getElementById('type-options').addEventListener('click', function(){
-  DropdownHendler.setText(event);
-});
-document.getElementById('customer-options').addEventListener('click', function(){
-  DropdownHendler.setText(event);
-});
+
 document.getElementById('butt-add-row').addEventListener('click', function(){
-  add_row(this);
+  tableHandler.create_row();
 });
 //document.getElementById('lupa').addEventListener('click', filter);
 
+
 /*Закрыть меню или список если нажать в другое место окна*/
 window.onclick = function(event) {
-    DropdownHendler.hideOnOutClick(event);
     toggleHandler.hideRightMenu(event);
 }
 
