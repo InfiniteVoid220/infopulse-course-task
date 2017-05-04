@@ -34,6 +34,8 @@ function filterByType() {//фильтрация записей по типу
 
     this.filtering = function(){ 
         displayAllRows();
+
+
         
         for(var j = 0; j < self.rows.length; j++){
             if(!isTypeInList(j) || !isDataInInterval(j) || !search(j)){
@@ -44,27 +46,23 @@ function filterByType() {//фильтрация записей по типу
 
     function isTypeInList(j){//проверяет есть ли такой тип проекта в списке фильтрации 
         var projectType = self.rows[j].getElementsByTagName("td")[5].innerHTML;
-        for(var i = 0; i < self.checkboxesArray.length; i++){
-            if(projectType == self.checkboxesArray[i]){
-                 return true;
-            }
-        }
-        return false;
+        return self.checkboxesArray.indexOf(projectType) > -1
     }
 
     function isDataInInterval(j){
+        var data = self.rows[j].getElementsByTagName("td");
 
-        var dueDate = convertToDate(self.rows[j].getElementsByTagName("td")[2].innerHTML);
-        var createdDate = convertToDate(self.rows[j].getElementsByTagName("td")[3].innerHTML);
+        var dueDate = convertToDate(data[2].innerHTML);
+        var createdDate = convertToDate(data[3].innerHTML);
         var filterDate = new Date(document.getElementById("search-date").value);
         if(isNaN(filterDate)) return true;
-        if(filterDate < dueDate && filterDate > createdDate){
-            return true; 
-        } else return false;
+
+        return (filterDate < dueDate && filterDate > createdDate);
 
     }
 
-    this.toggleFilterList = function (index,checkbox){ //добавить тип в список если его нет или удалить если есть
+    this.toggleFilterList = function (index, checkbox){ //добавить тип в список если его нет или удалить если есть
+        
         if(self.checkboxesArray[index] === undefined){
             self.checkboxesArray[index] = checkbox.innerHTML;
         } else {
@@ -75,11 +73,7 @@ function filterByType() {//фильтрация записей по типу
     function search(j){
         var filterText = document.getElementById("search-field").value.toUpperCase();
         projectName = self.rows[j].getElementsByTagName("td")[0].innerHTML.toUpperCase();
-        if (projectName.indexOf(filterText) > -1) {
-            return true;
-        } else {
-            return false;
-        }  
+        return (projectName.indexOf(filterText) > -1);
     }
 
     this.init();
