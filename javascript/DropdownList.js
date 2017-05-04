@@ -15,12 +15,11 @@ function DropdownList(options){//класс для выпадающего спи
         window.addEventListener('click', function(){
             self.hideOnOutClick(event.target);
         })
-
     }
 
     this.init = function(){
-        this.rootEl = options.el,
-        this.selectedItem = this.rootEl.getElementsByClassName('dropdown-field')[0],
+        this.rootEl = options.el;
+        this.selectedItem = this.rootEl.getElementsByClassName('dropdown-field')[0];
         this.list = this.rootEl.getElementsByClassName('dropdown-options')[0];
         this.initEvents();
     } 
@@ -34,14 +33,13 @@ function DropdownList(options){//класс для выпадающего спи
     }
 
     this.hideOnOutClick = function (el){
-        if(this.selectedItem!=null && !el.matches(".dropdown-field")) {
+        if(el!=this.selectedItem) {
             this.selectedItem.classList.remove("show");
         }
     }
 
-  
     this.init();
 }   
-//классы show и hide находятся в side-menu-right.css
+//класс show находится в side-menu-right.css
 /*------------------------------------------------------------------------------------*/
 

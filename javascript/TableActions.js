@@ -5,45 +5,6 @@ function tableActions(){
         document.getElementById("data").deleteRow(currentRow);
     }
 
-    /*Work in progres*/
-
-   /* function Filter() {//класс для отбора данных с таблицы
-        var i=0;
-        var project_name = document.getElementById("search-field").value.toUpperCase();
-        var = {};
-        var web = document.getElementById("web").value;
-        var web = document.getElementById("web").value;
-        var web = document.getElementById("web").value;
-        var web = document.getElementById("web").value;
-
-        var rows = document.getElementById("data").getElementsByTagName("tr");
-        this.flagsActive = function(){
-
-        }
-
-        this.search = function(){
-            var input, table, tr, td, i;
-           
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-                if (td) {
-                    if (td.innerHTML.toUpperCase().indexOf(project_name) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }       
-            }
-        }
-
-    }
-
-    var items=document.getElementsByTagName('th');
-    for( var i = 0; i < items.length-1; i++ ) {
-            items[i].addEventListener('click',sort_table.bind(null, i));
-    }
-    */
-
     this.create_row = function(){
         alert("create_row exec");
 

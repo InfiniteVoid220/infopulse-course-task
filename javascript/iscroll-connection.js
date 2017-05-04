@@ -7,3 +7,5 @@ document.addEventListener('touchmove', function (e) { e.preventDefault(); }, fal
     capture: false,
     passive: false
 } : false);
+
+window.addEventListener('load', loaded);
