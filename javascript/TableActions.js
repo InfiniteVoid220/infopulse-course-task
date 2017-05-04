@@ -1,4 +1,15 @@
 function tableActions(){
+    var self = this;
+
+    this.init = function(){
+        this.initEvents();
+    }
+
+    this.initEvents = function(){
+        document.getElementById('butt-add-row').addEventListener('click', function(){
+            self.create_row();
+        });
+    }
 
     function deleteRow(x) {
         var currentRow=x.parentElement.parentElement.rowIndex;
@@ -86,7 +97,6 @@ function tableActions(){
         fields[0] = document.getElementById("project-name").value;
         
         date = new Date(document.getElementById("due-date").value);
-        alert(dateDisplay(date));
         fields[1] = dateDisplay(date);
 
         date = new Date(document.getElementById("created").value);
@@ -150,5 +160,7 @@ function tableActions(){
             arguments_counter++;
         }
     }
+
+    this.init();
 }
 
