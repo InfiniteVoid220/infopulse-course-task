@@ -1,11 +1,12 @@
 
 function filterByType() {//фильтрация записей по типу
     var self = this;
-
+    
     this.init = function(){
         this.checkboxesArray = ["WEB","DESKTOP","MOBILE","SUPPORT"];
-        this.rows = document.getElementById("data").getElementsByTagName("tr");
+        this.filterBy = ["Type","ProjectName","Date"];
         
+        this.rows = document.getElementById("data").getElementsByTagName("tr");
         this.initEvents();
     } 
 
@@ -14,25 +15,40 @@ function filterByType() {//фильтрация записей по типу
         for(let i = 0; i < checkboxes.length; i++){
             checkboxes[i].addEventListener('click', function(){
                 self.toggleFilterList(i,this);
-                self.filtering("Type");
+                self.filtering();
             });
         }
 
         document.getElementById("search-date").addEventListener('change', function(){
-            self.filtering("Date");
+            self.filtering();
         });
 
          document.getElementById("lupa").addEventListener('click', function(){
-            self.filtering("ProjectName");
+            self.filtering();
         });
     }
+    
+    this.init();
 
-    this.filtering = function(filterBy){ 
-        var filter = defineFilter(filterBy);
-
+    function setDisplayToDefault(){
         for(var j=0;j < self.rows.length;j++){
-            self.rows[j].style.display = filter(j); 
-        }   
+            self.rows[j].style.display="";
+        }
+    }
+
+    this.filtering = function(){ 
+        setDisplayToDefault();
+        
+        for(var i=0;i<2;i++){
+            var filter = defineFilter(self.filterBy[i]);
+           
+            for(var j=0;j < self.rows.length;j++){
+                if(self.rows[j].style.getPropertyValue("display")!=""){
+                    continue;
+                }
+                self.rows[j].style.display = filter(j);  
+            }
+        }
     }
 
     function isTypeInList(j){//проверяет есть ли такой тип проекта в списке фильтрации 
@@ -45,10 +61,10 @@ function filterByType() {//фильтрация записей по типу
         return "none";
     }
 
-    function isDataInInterval(){
+    function isDataInInterval(j){
 
-        var dueDate = convertToDate(self.rows[0].getElementsByTagName("td")[2].innerHTML);
-        var createdDate = convertToDate(self.rows[0].getElementsByTagName("td")[3].innerHTML);
+        var dueDate = convertToDate(self.rows[j].getElementsByTagName("td")[2].innerHTML);
+        var createdDate = convertToDate(self.rows[j].getElementsByTagName("td")[3].innerHTML);
         var filterDate = new Date(document.getElementById("search-date").value);
 
         if(filterDate < dueDate && filterDate > createdDate){
@@ -61,13 +77,13 @@ function filterByType() {//фильтрация записей по типу
         if(self.checkboxesArray[index] === undefined){
             self.checkboxesArray[index] = checkbox.innerHTML;
         } else {
-           self.checkboxesArray[index] = undefined;
+            self.checkboxesArray[index] = undefined;
         }
     }
 
     function defineFilter(filterBy){//определить 
         switch(filterBy){
-            case "Date": return function(){ return isDataInInterval(); }; break;
+            case "Date": return function(Value){ return isDataInInterval(Value); }; break;
             case "Type": return function(Value){ return isTypeInList(Value); }; break;
             case "ProjectName": return function(Value){ return search(Value); }; break;
         } 
@@ -82,6 +98,5 @@ function filterByType() {//фильтрация записей по типу
             return "none";
         }  
     }
-    
-    this.init();
+
 }
