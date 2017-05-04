@@ -21,6 +21,9 @@ function SortTable() {//класс для сортировки
     }
 
     function compareDate(currentRow, nextRow, direction){
+        let test_currentRow = toDate(currentRow.innerHTML);
+        let test_nextRow = toDate(nextRow.innerHTML);
+        
         if(direction == "asc" 
            && toDate(currentRow.innerHTML) > toDate(nextRow.innerHTML)){
             return true;
