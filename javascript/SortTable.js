@@ -24,23 +24,13 @@ function SortTable() {//класс для сортировки
         }
     }
 
-    function removeSortArrow(){
-        for(var i = 0; i < self.theadButtons.length-1;i++){
-            self.theadButtons[i].classList.remove("sortASC");
-            self.theadButtons[i].classList.remove("sortDESC");
-        }
-    }
-    function defineDirection(n){
-        var sortDir = ""+self.currentTH.classList;
-        sortDir = sortDir.substring(4,sortDir.length);      
-        return sortDir=="ASC"?"DESC":"ASC";
-    }
     this.sortByColumn = function(n) {
         self.currentTH = self.theadButtons[n];
-
-        self.direction = defineDirection(n);
-        //self.currentTH.classList.remve("sort"+this.direction);
+        self.direction = reverseDirection();
+        
         setVariablesToDefault(); 
+        removeSortArrow();
+
         var compareRows = defineCompareMethod(n);
 
         while (this.swaping) {//Исполнять пока изменяется порядок.
@@ -55,8 +45,20 @@ function SortTable() {//класс для сортировки
                 } 
             }
         }  
-
+        //отобразить стрелку по направлению сортировки
+        self.currentTH.classList.remove("sort"+reverseDirection());
         self.currentTH.classList.add("sort"+this.direction);
+    }
+
+    function removeSortArrow(){
+        for(var i = 0; i < self.theadButtons.length-1;i++){
+            self.theadButtons[i].classList.remove("sortASC");
+            self.theadButtons[i].classList.remove("sortDESC");
+        }
+    }
+
+    function reverseDirection(){
+         return self.direction == "ASC" ? "DESC" : "ASC";
     }
 
     function defineSortType(tableColumn){
@@ -103,7 +105,6 @@ function SortTable() {//класс для сортировки
     }
 
     function setVariablesToDefault(){
-        removeSortArrow();
         self.swaping=true;
         self.swapCount=0;
     }
