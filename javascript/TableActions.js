@@ -126,6 +126,10 @@ function tableActions(){
         var table = document.getElementById("data");
         var row = table.insertRow(0);
 
+        if(fields[5] == "over") 
+            row.classList.add("finished");
+
+
         for(var i = 0, arguments_counter = 0; i < 9; i++){
             if(i == 1){
                 row.insertCell(i);
