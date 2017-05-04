@@ -1,4 +1,15 @@
 function tableActions(){
+    var self = this;
+
+    this.init = function(){
+        this.initEvents();
+    }
+
+    this.initEvents = function(){
+        document.getElementById('butt-add-row').addEventListener('click', function(){
+            self.create_row();
+        });
+    }
 
 
     function deleteRow(x) {
@@ -155,5 +166,7 @@ function tableActions(){
             arguments_counter++;
         }
     }
+
+    this.init();
 }
 
