@@ -5,26 +5,41 @@ function SortTable() {//класс для сортировки
     this.init = function(){
 
         this.rows = document.getElementById("data").getElementsByTagName("TR");
-
+        this.theadButtons = document.getElementById('tb-block').getElementsByTagName('th');
+        this.currentTH = null;
         this.swaping = true;
         this.swapCount = 0;
 
-        this.direction = "asc"; 
+        this.direction = "ASC"; 
         
         this.initEvents();
     } 
 
     this.initEvents = function(){
-        var thead_buttons = document.getElementById('tb-block').getElementsByTagName('th');
-        
-        for(var i = 0; i < thead_buttons.length-1; i++){
-            thead_buttons[i].addEventListener('click', function(){
+        for(var i = 0; i < this.theadButtons.length-1; i++){
+            if(i==1) continue;
+            this.theadButtons[i].addEventListener('click', function(){
                 self.sortByColumn(this.cellIndex);
             });
         }
     }
 
+    function removeSortArrow(){
+        for(var i = 0; i < self.theadButtons.length-1;i++){
+            self.theadButtons[i].classList.remove("sortASC");
+            self.theadButtons[i].classList.remove("sortDESC");
+        }
+    }
+    function defineDirection(n){
+        var sortDir = ""+self.currentTH.classList.substring(4,sortDir.length);
+        sortDir = sortDir.substring(4,sortDir.length);      
+        return sortDir=="ASC"?"DESC":"ASC";
+    }
     this.sortByColumn = function(n) {
+        self.currentTH = self.theadButtons[n];
+        
+        self.direction = defineDirection(n);
+
         setVariablesToDefault(); 
         var compareRows = defineCompareMethod(n);
 
@@ -34,17 +49,14 @@ function SortTable() {//класс для сортировки
                 
                 let currentRow = this.rows[i].getElementsByTagName("TD")[n];
                 let nextRow = this.rows[i + 1].getElementsByTagName("TD")[n];
-
+                
                 if (compareRows(currentRow,nextRow)) {   
                     swapRows(i);
                 } 
             }
-            /*смена направления сортировки, если не произошло изменений.*/  
-            if (this.swapCount == 0 && this.direction == "asc") {
-                this.direction = "desc";
-                this.swaping = true;
-            }
-        }
+        }  
+
+        self.currentTH.classList.add("sort"+this.direction);
     }
 
     function defineSortType(tableColumn){
@@ -56,10 +68,10 @@ function SortTable() {//класс для сортировки
     }
 
     function compareDate(currentRow,nextRow){
-        if(self.direction == "asc" 
+        if(self.direction == "ASC" 
            && convertToDate(currentRow.innerHTML) > convertToDate(nextRow.innerHTML)){
             return true;
-        } else if(self.direction == "desc" 
+        } else if(self.direction == "DESC" 
                   && convertToDate(currentRow.innerHTML) < convertToDate(nextRow.innerHTML)) {
             return true;
         }
@@ -67,10 +79,10 @@ function SortTable() {//класс для сортировки
     }
 
     function compareText(currentRow,nextRow){
-        if(self.direction == "asc" 
+        if(self.direction == "ASC" 
            && currentRow.innerHTML.toLowerCase() > nextRow.innerHTML.toLowerCase()){
             return true;
-        } else if(self.direction == "desc" 
+        } else if(self.direction == "DESC" 
                   && currentRow.innerHTML.toLowerCase() < nextRow.innerHTML.toLowerCase()) {
             return true;
         }
@@ -91,8 +103,8 @@ function SortTable() {//класс для сортировки
     }
 
     function setVariablesToDefault(){
+        removeSortArrow();
         self.swaping=true;
-        self.direction="asc";
         self.swapCount=0;
     }
 

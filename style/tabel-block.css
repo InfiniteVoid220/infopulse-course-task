@@ -33,6 +33,14 @@
 .table-block th {
 	color: #e67817;
 	border-bottom: 2px solid #737374;
+
+}
+
+.sortASC{
+	background: url(../images/sortASC.png) no-repeat 90% center;
+}
+.sortDESC{
+	background: url(../images/sortDESC.png) no-repeat 90% center;
 }
 
 .table-block th:first-child,
