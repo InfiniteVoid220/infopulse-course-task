@@ -1,26 +1,30 @@
 function tableActions(){
 
+
     function deleteRow(x) {
         var currentRow=x.parentElement.parentElement.rowIndex;
         document.getElementById("data").deleteRow(currentRow);
     }
 
-    var buttons_del = document.getElementById('data').getElementsByTagName('button');
-    for(let i = 0; i < buttons_del.length; i++){
-        buttons_del[i].addEventListener('click', function(){
-            deleteRow(this);
+    this.initEvents = function(){
+        var buttons_del = document.getElementById('data').getElementsByTagName('button');
+        for(let i = 0; i < buttons_del.length; i++){
+            buttons_del[i].addEventListener('click', function(){
+                deleteRow(this);
+            });
+        }
+
+        document.getElementById('butt-add-row').addEventListener('click', function(){
+            create_row();
         });
     }
-
-    document.getElementById('butt-add-row').addEventListener('click', function(){
-        create_row();
-    });
-
+    this.initEvents();
+    
     function create_row(){
         let fields = load_data();
 
         if(!is_all_filled_in(fields)){
-            alert("Fill all fields")
+            alert("Fill all fields");
             return;
         }
 
