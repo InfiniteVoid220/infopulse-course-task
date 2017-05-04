@@ -12,13 +12,15 @@ function tableActions(){
         });
     }
 
-    this.create_row = function(){
-        alert("create_row exec");
+    document.getElementById('butt-add-row').addEventListener('click', function(){
+        create_row();
+    });
 
+    function create_row(){
         let fields = load_data();
 
         if(!is_all_filled_in(fields)){
-            alert("error")
+            alert("Fill all fields")
             return;
         }
 
@@ -77,7 +79,6 @@ function tableActions(){
         fields[0] = document.getElementById("project-name").value;
         
         date = new Date(document.getElementById("due-date").value);
-        alert(dateDisplay(date));
         fields[1] = dateDisplay(date);
 
         date = new Date(document.getElementById("created").value);

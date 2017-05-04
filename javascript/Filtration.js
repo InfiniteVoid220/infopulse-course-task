@@ -39,7 +39,7 @@ function filterByType() {//фильтрация записей по типу
     this.filtering = function(){ 
         setDisplayToDefault();
         
-        for(var i=0;i<2;i++){
+        for(var i=0;i<3;i++){
             var filter = defineFilter(self.filterBy[i]);
            
             for(var j=0;j < self.rows.length;j++){
@@ -66,7 +66,7 @@ function filterByType() {//фильтрация записей по типу
         var dueDate = convertToDate(self.rows[j].getElementsByTagName("td")[2].innerHTML);
         var createdDate = convertToDate(self.rows[j].getElementsByTagName("td")[3].innerHTML);
         var filterDate = new Date(document.getElementById("search-date").value);
-
+        if(isNaN(filterDate)) return "";
         if(filterDate < dueDate && filterDate > createdDate){
             return ""; 
         } else return "none";
