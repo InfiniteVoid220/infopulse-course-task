@@ -20,11 +20,20 @@ function tableActions(){
             return;
         }
 
-        if(typeof(fields) != 'undefined'){
-            add_row(fields);
-
-        }
+        add_row(fields);
+        
+        clear_fields();
     }
+
+    function clear_fields(){
+        document.getElementById("project-name").value = "";
+        document.getElementById("due-date").value = "";
+        document.getElementById("created").value = "";
+        document.getElementById("members").value = "";
+        document.getElementsByClassName('type-dropdown')[0].getElementsByClassName('dropdown-field')[0].innerHTML = "TYPE:";
+        document.getElementsByClassName('customer-dropdown')[0].getElementsByClassName('dropdown-field')[0].innerHTML = "Customers:";
+    }
+
 
     function is_all_filled_in(fields){
         let is_all_filled_in = true;
