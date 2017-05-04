@@ -31,15 +31,15 @@ function SortTable() {//класс для сортировки
         }
     }
     function defineDirection(n){
-        var sortDir = ""+self.currentTH.classList.substring(4,sortDir.length);
+        var sortDir = ""+self.currentTH.classList;
         sortDir = sortDir.substring(4,sortDir.length);      
         return sortDir=="ASC"?"DESC":"ASC";
     }
     this.sortByColumn = function(n) {
         self.currentTH = self.theadButtons[n];
-        
-        self.direction = defineDirection(n);
 
+        self.direction = defineDirection(n);
+        //self.currentTH.classList.remve("sort"+this.direction);
         setVariablesToDefault(); 
         var compareRows = defineCompareMethod(n);
 
