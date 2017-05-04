@@ -45,7 +45,7 @@ option{
     position: absolute;
     left:0;
     width: 277px;
-    background-color:rgba(215, 112, 22,.15);
+    background-color:#221203;
     z-index: 1;
     border-bottom:2px solid #d77016;
 }

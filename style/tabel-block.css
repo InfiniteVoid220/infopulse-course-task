@@ -19,15 +19,11 @@
 	vertical-align: middle;
 	font-size: 20px;
 	border-collapse: collapse;
-
-	/*border: 1px solid white;*/
 }
 
 .table-block th, td {
 	height: 90px;
 	width: 13%;
-
-	/*border: 1px solid white;*/
 }
 
 .table-block th {
