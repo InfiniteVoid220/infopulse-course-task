@@ -54,10 +54,9 @@ function SortTable() {//класс для сортировки
             return "ByText";
         }
     }
-
-    function compareDate(currentRow,nextRow){
-        if(self.direction == "asc" 
-           && convertToDate(currentRow.innerHTML) > convertToDate(nextRow.innerHTML)){
+    function compareDate(currentRow, nextRow, direction){
+        if(direction == "asc" 
+           && toDate(currentRow.innerHTML) > toDate(nextRow.innerHTML)){
             return true;
         } else if(self.direction == "desc" 
                   && convertToDate(currentRow.innerHTML) < convertToDate(nextRow.innerHTML)) {

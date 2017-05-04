@@ -8,53 +8,111 @@ function tableActions(){
     this.create_row = function(){
         alert("create_row exec");
 
-        let proj_name = document.getElementById("project-name").value;
-        let due_date = document.getElementById("due-date").value;
-        let created = document.getElementById("created").value;
-        let members = document.getElementById("members").value;
-        let type;
-        let status;
-        add_row(proj_name, due_date, created, members, type, status);
+        let fields = load_data();
+
+        if(!is_all_filled_in(fields)){
+            alert("error")
+            return;
+        }
+
+        if(!is_dates_correct()){
+            alert("incorrect dates!");
+            return;
+        }
+
+        if(typeof(fields) != 'undefined'){
+            add_row(fields);
+
+        }
     }
 
-    function add_row() {
+    function is_all_filled_in(fields){
+        let is_all_filled_in = true;
+
+        for(let i = 0; i < 7; i++){
+            switch(i){
+                case 1:
+                case 2:
+                    if(fields[i].substring(0,3) == "NaN") is_all_filled_in = false;
+                    break;
+                case 4:
+                    if(fields[i] == "TYPE:") is_all_filled_in = false;
+                    break;
+                case 6:
+                    if(fields[i] == "Customers:") is_all_filled_in = false;
+                    break;
+                default:
+                    if(fields[i] == "") is_all_filled_in = false;
+            }
+
+            if(!is_all_filled_in) break;
+        }
+
+        return is_all_filled_in;       
+    }
+
+    function load_data(){
+        let fields = [];
+        let date;
+
+        fields[0] = document.getElementById("project-name").value;
+        
+        date = new Date(document.getElementById("due-date").value);
+        fields[1] = date.getDate() + "." + (date.getMonth()+1) + "." + date.getFullYear();
+
+        date = new Date(document.getElementById("created").value);
+        fields[2] = date.getDate() + "." + (date.getMonth()+1) + "." + date.getFullYear();
+
+        fields[3] = document.getElementById("members").value;
+        fields[4] = document.getElementsByClassName('type-dropdown')[0].getElementsByClassName('dropdown-field')[0].innerHTML;
+        fields[5] = get_status(fields[1], fields[2]);
+        fields[6] = document.getElementsByClassName('customer-dropdown')[0].getElementsByClassName('dropdown-field')[0].innerHTML;      
+        
+        return fields;
+    }
+
+    function get_status(){
+
+        let today = new Date();
+        let due_date = new Date(document.getElementById("due-date").value);
+        let created_date = new Date(document.getElementById("created").value);
+
+        if(created_date > today) return "future";
+        else
+            if(due_date < today) return "over";
+            else return "current";
+    }
+
+    function is_dates_correct(){
+        let due_date = new Date(document.getElementById("due-date").value);
+        let created_date = new Date(document.getElementById("created").value);
+
+        if(created_date > due_date)
+            return false;
+        return true;
+    }
+
+    function add_row(fields) {
         alert("add_row exec");
 
         var table = document.getElementById("data");
         var row = table.insertRow(0);
-        row.style.background = "blue";
-        var arguments = ["cell0","cell2","cell3","cell4","cell5","cell6"];
-        for(var i = 0, arguments_counter = 0; i < 7; i++){
+
+        for(var i = 0, arguments_counter = 0; i < 9; i++){
             if(i == 1){
                 row.insertCell(i);
+                continue;
             }
-            else{
-                row.insertCell(i).innerHTML = arguments[arguments_counter];
-                arguments_counter++;
+            if(i == 8){
+                var cell = row.insertCell(i);
+                var but = document.createElement('button');
+                cell.appendChild(but);
+                continue;
             }
+    
+            row.insertCell(i).innerHTML = fields[arguments_counter];
+            arguments_counter++;
         }
-
-        /*
-        row.style.background = "blue";
-        var cell0 = row.insertCell(0);
-        var cell1 = row.insertCell(1);
-        var cell2 = row.insertCell(2);
-        var cell3 = row.insertCell(3);
-        var cell4 = row.insertCell(4);
-        var cell5 = row.insertCell(5);
-        var cell6 = row.insertCell(6);
-        cell0.innerHTML = "Cell0";   
-        cell2.innerHTML = "Cell2";
-        cell3.innerHTML = "Cell3";
-        cell4.innerHTML = "Cell4";
-        cell5.innerHTML = "Cell5";
-        cell6.innerHTML = "Cell6";
-        */
-
-        /*
-        for(var i = 0; i < arguments.length; i++){
-            row.insertCell(i).innerHTML = arguments[i];
-        }*/
     }
 }
 
