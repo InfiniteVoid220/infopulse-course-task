@@ -12,5 +12,5 @@ var filterHandler = new filterByType();
 })(window, document);
 function convertToDate(dateStr) {
     let parts = dateStr.split(".");
-    return new Date(parts[2], parts[1], parts[0]);
+    return new Date(parts[2], parts[1]-1, parts[0]);
 }
