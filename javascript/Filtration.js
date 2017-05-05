@@ -12,7 +12,7 @@ function filterByType() {//фильтрация записей по типу
         var checkboxes = document.getElementById("checkboxes").getElementsByTagName("label");
         for(let i = 0; i < checkboxes.length; i++){//убрать цыклы
             checkboxes[i].addEventListener('click', function(){
-                self.toggleFilterList(i,this);
+                self.toggleFilterList(this.innerHTML);
                 self.filtering();
             });
         }
@@ -49,6 +49,7 @@ function filterByType() {//фильтрация записей по типу
 
     function isTypeInList(j){//проверяет есть ли такой тип проекта в списке фильтрации 
         var projectType = self.rows[j].getElementsByTagName("td")[5].innerHTML;
+        if(self.checkboxesArray.length == 0) return true;
         return self.checkboxesArray.indexOf(projectType) > -1;
     }
 
@@ -62,17 +63,15 @@ function filterByType() {//фильтрация записей по типу
         return filterDate <= dueDate && filterDate >= createdDate;
 
     }
-    //переделать
-    this.toggleFilterList = function (index,checkbox){ //добавить тип в список если его нет или удалить если есть
-        if(self.checkboxesArray[index] === undefined){
-            self.checkboxesArray[index] = checkbox.innerHTML;
-        } else {
-            self.checkboxesArray[index] = undefined;
-        }
-    }
 
+    this.toggleFilterList = function (checkboxValue){ //добавить тип в список если его нет или удалить если есть
+        var i = self.checkboxesArray.indexOf(checkboxValue);
+        if(i>-1)
+            self.checkboxesArray.splice(i,1);
+        else self.checkboxesArray.push(checkboxValue);
+    }
     function search(j){
-        var filterText = document.getElementById("search-field").value.toUpperCase();
+        var filterText = document.getElementById("search-field").value.trim().toUpperCase();
         projectName = self.rows[j].getElementsByTagName("td")[0].innerHTML.toUpperCase();
         return projectName.indexOf(filterText) > -1; 
     }

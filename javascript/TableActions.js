@@ -1,5 +1,6 @@
 function tableActions(){
     var self = this;
+
     var tbody;
     var field_project_name;
     var field_due_date;
@@ -19,14 +20,46 @@ function tableActions(){
 
         this.tbody.addEventListener('click', function(){
                 if(event.target.tagName == "BUTTON") deleteRow(event.target);
-        });
-
-        document.getElementById('butt-add-row').addEventListener('click', function(){
+        }
+     document.getElementById('butt-add-row').addEventListener('click', function(){
             create_row();
         });
     }
-    this.init();
+    this.init(); 
+  function deleteRow(x) {
+        var currentRow=x.parentElement.parentElement.rowIndex;
+        document.getElementById("data").deleteRow(currentRow);
+    }
+    this.add_row  = function(fields) {
+
+        var table = document.getElementById("data");
+        var row = table.insertRow(0);
+
+        if(fields[5] == "over") 
+            row.classList.add("finished");
+
+
+        for(let i = 0, arguments_counter = 0; i < 9; i++){
+            if(i == 1){
+                row.insertCell(i).appendChild(document.createElement("div"));
+                continue;
+            }
+            if(i == 8){
+                var cell = row.insertCell(i);
+                var but = document.createElement('button');
+                but.addEventListener('click', function(){
+                    deleteRow(this);
+                });
+
+                cell.appendChild(but);
+                continue;
+            }
+
     
+            row.insertCell(i).innerHTML = fields[arguments_counter];
+            arguments_counter++;
+        }
+    }
     function create_row(){
         let fields = load_data();
 
@@ -100,7 +133,8 @@ function tableActions(){
         let fields = [];
         let date;
 
-        fields[0] = self.field_project_name.value;
+
+        fields[0] = self.field_project_name.value.trim();
         
         date = new Date(self.field_due_date.value);
         fields[1] = dateDisplay(date);
@@ -108,8 +142,10 @@ function tableActions(){
         date = new Date(self.field_created.value);
         fields[2] = dateDisplay(date);
 
-        fields[3] = self.field_members.value;
-        fields[4] = self.field_type_dropdown.innerHTML.toUpperCase();
+
+        fields[3] = self.field_members.value.trim();
+        fields[4] = self.field_type_dropdown.innerHTML.toUpperCase().trim();
+
         fields[5] = self.get_status(fields[1], fields[2]);
         fields[6] = self.field_customer_dropdown.innerHTML;      
         
@@ -133,6 +169,7 @@ function tableActions(){
             return false;
         return true;
     }
+
 
     this.add_row = function(fields) {
 
@@ -163,3 +200,4 @@ function tableActions(){
         }
     }
 }
+
