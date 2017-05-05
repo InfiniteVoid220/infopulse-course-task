@@ -1,24 +1,18 @@
 function tableActions(){
     var self = this;
 
-    this.init = function(){
-        this.initEvents();
-    }
-
-    this.initEvents = function(){
-        document.getElementById('butt-add-row').addEventListener('click', function(){
-            self.create_row();
-        });
-    }
-
-
+    console.log("sadsf");
     function deleteRow(x) {
         var currentRow=x.parentElement.parentElement.rowIndex;
         document.getElementById("data").deleteRow(currentRow);
     }
 
     this.initEvents = function(){
+        document.getElementById('butt-add-row').addEventListener('click', function(){
+            self.create_row();
+        });
         var buttons_del = document.getElementById('data').getElementsByTagName('button');
+
         for(let i = 0; i < buttons_del.length; i++){
             buttons_del[i].addEventListener('click', function(){
                 deleteRow(this);
@@ -110,20 +104,18 @@ function tableActions(){
 
         fields[3] = document.getElementById("members").value;
         fields[4] = document.getElementsByClassName('type-dropdown')[0].getElementsByClassName('dropdown-field')[0].innerHTML.toUpperCase();
-        fields[5] = get_status(fields[1], fields[2]);
+        fields[5] = self.get_status(fields[1], fields[2]);
         fields[6] = document.getElementsByClassName('customer-dropdown')[0].getElementsByClassName('dropdown-field')[0].innerHTML;      
         
         return fields;
     }
 
-    function get_status(){
+    this.get_status=function(dueDate,createdDate){
 
         let today = new Date();
-        let due_date = new Date(document.getElementById("due-date").value);
-        let created_date = new Date(document.getElementById("created").value);
 
-        if(created_date > today) return "future";
-        if(due_date < today) return "over";
+        if(createdDate > today) return "future";
+        if(dueDate < today) return "over";
         return "current";
     }
 
@@ -165,7 +157,5 @@ function tableActions(){
             arguments_counter++;
         }
     }
-
-    this.init();
 }
 
