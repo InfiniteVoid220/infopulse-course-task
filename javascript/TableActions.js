@@ -1,15 +1,14 @@
 function tableActions(){
     var self = this;
-
-    console.log("sadsf");
+    
     function deleteRow(x) {
         var currentRow=x.parentElement.parentElement.rowIndex;
         document.getElementById("data").deleteRow(currentRow);
     }
 
     this.initEvents = function(){
-           document.getElementById('data').addEventListener('click', function(){
-                if(event.target.tagName == "BUTTON") deleteRow(event.target);
+       document.getElementById('data').addEventListener('click', function(){
+            if(event.target.tagName == "BUTTON") deleteRow(event.target);
         });
 
         document.getElementById('butt-add-row').addEventListener('click', function(){
@@ -17,7 +16,36 @@ function tableActions(){
         });
     }
     this.initEvents();
+
+    this.add_row  = function(fields) {
+
+        var table = document.getElementById("data");
+        var row = table.insertRow(0);
+
+        if(fields[5] == "over") 
+            row.classList.add("finished");
+
+
+        for(let i = 0, arguments_counter = 0; i < 9; i++){
+            if(i == 1){
+                row.insertCell(i).appendChild(document.createElement("div"));
+                continue;
+            }
+            if(i == 8){
+                var cell = row.insertCell(i);
+                var but = document.createElement('button');
+                but.addEventListener('click', function(){
+                    deleteRow(this);
+                });
+
+                cell.appendChild(but);
+                continue;
+            }
     
+            row.insertCell(i).innerHTML = fields[arguments_counter];
+            arguments_counter++;
+        }
+    }
     function create_row(){
         let fields = load_data();
 
@@ -31,7 +59,7 @@ function tableActions(){
             return;
         }
 
-        add_row(fields);
+        self.add_row(fields);
         
         clear_fields();
     }
@@ -121,34 +149,6 @@ function tableActions(){
         return true;
     }
 
-    this.add_row  = function(fields) {
-
-        var table = document.getElementById("data");
-        var row = table.insertRow(0);
-
-        if(fields[5] == "over") 
-            row.classList.add("finished");
-
-
-        for(let i = 0, arguments_counter = 0; i < 9; i++){
-            if(i == 1){
-                row.insertCell(i).appendChild(document.createElement("div"));
-                continue;
-            }
-            if(i == 8){
-                var cell = row.insertCell(i);
-                var but = document.createElement('button');
-                but.addEventListener('click', function(){
-                    deleteRow(this);
-                });
-
-                cell.appendChild(but);
-                continue;
-            }
     
-            row.insertCell(i).innerHTML = fields[arguments_counter];
-            arguments_counter++;
-        }
-    }
 }
 
