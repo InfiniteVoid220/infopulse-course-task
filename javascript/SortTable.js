@@ -9,7 +9,6 @@ function SortTable() {//класс для сортировки
         this.currentTH = null;
         this.swaping = true;
         this.swapCount = 0;
-
         this.direction = "ASC"; 
         
         this.initEvents();
@@ -17,28 +16,29 @@ function SortTable() {//класс для сортировки
 
     this.initEvents = function(){
         for(var i = 0; i < this.theadButtons.length-1; i++){
-            if(i==1) continue;
+            if(i == 1) continue;
             this.theadButtons[i].addEventListener('click', function(){
                 self.sortByColumn(this.cellIndex);
             });
         }
     }
 
-    this.sortByColumn = function(n) {
-        self.currentTH = self.theadButtons[n];
+    this.sortByColumn = function(cellIndex) {
+        removeSortArrow();
+        
+        self.currentTH = self.theadButtons[cellIndex];
         self.direction = reverseDirection();
         
         setVariablesToDefault(); 
-        removeSortArrow();
 
-        var compareRows = defineCompareMethod(n);
+        var compareRows = defineCompareMethod(cellIndex);
 
         while (this.swaping) {//Исполнять пока изменяется порядок.
             this.swaping = false;
-            for (var i = 0; i < (this.rows.length-1); i++) {
+            for (let i = 0; i < this.rows.length-1; i++) {
                 
-                let currentRow = this.rows[i].getElementsByTagName("TD")[n];
-                let nextRow = this.rows[i + 1].getElementsByTagName("TD")[n];
+                let currentRow = this.rows[i].getElementsByTagName("TD")[cellIndex];
+                let nextRow = this.rows[i + 1].getElementsByTagName("TD")[cellIndex];
                 
                 if (compareRows(currentRow,nextRow)) {   
                     swapRows(i);
@@ -51,10 +51,9 @@ function SortTable() {//класс для сортировки
     }
 
     function removeSortArrow(){
-        for(var i = 0; i < self.theadButtons.length-1;i++){
-            self.theadButtons[i].classList.remove("sortASC");
-            self.theadButtons[i].classList.remove("sortDESC");
-        }
+        if(self.currentTH)
+            if(self.direction == "ASC") self.currentTH.classList.remove("sortASC");
+            else self.currentTH.classList.remove("sortDESC");
     }
 
     function reverseDirection(){
@@ -91,8 +90,8 @@ function SortTable() {//класс для сортировки
         return false;
     }
 
-    function defineCompareMethod(n){//определить 
-        switch(defineSortType(n)){
+    function defineCompareMethod(cellIndex){//определить 
+        switch(defineSortType(cellIndex)){
             case "ByDate": return function(currentRow,nextRow){ return compareDate(currentRow,nextRow); }; break;
             case "ByText": return function(currentRow,nextRow){ return compareText(currentRow,nextRow); }; break;
         } 

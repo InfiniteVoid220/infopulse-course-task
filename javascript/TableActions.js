@@ -123,9 +123,8 @@ function tableActions(){
         let created_date = new Date(document.getElementById("created").value);
 
         if(created_date > today) return "future";
-        else
-            if(due_date < today) return "over";
-            else return "current";
+        if(due_date < today) return "over";
+        return "current";
     }
 
     function is_dates_correct(){
@@ -146,7 +145,7 @@ function tableActions(){
             row.classList.add("finished");
 
 
-        for(var i = 0, arguments_counter = 0; i < 9; i++){
+        for(let i = 0, arguments_counter = 0; i < 9; i++){
             if(i == 1){
                 row.insertCell(i);
                 continue;
