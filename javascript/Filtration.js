@@ -12,7 +12,7 @@ function filterByType() {//фильтрация записей по типу
         var checkboxes = document.getElementById("checkboxes").getElementsByTagName("label");
         for(let i = 0; i < checkboxes.length; i++){//убрать цыклы
             checkboxes[i].addEventListener('click', function(){
-                self.toggleFilterList(this);
+                self.toggleFilterList(this.innerHTML);
                 self.filtering();
             });
         }
@@ -64,11 +64,11 @@ function filterByType() {//фильтрация записей по типу
 
     }
 
-    this.toggleFilterList = function (checkbox){ //добавить тип в список если его нет или удалить если есть
-        var i = self.checkboxesArray.indexOf(checkbox.innerHTML);
+    this.toggleFilterList = function (checkboxValue){ //добавить тип в список если его нет или удалить если есть
+        var i = self.checkboxesArray.indexOf(checkboxValue);
         if(i>-1)
             self.checkboxesArray.splice(i,1);
-        else self.checkboxesArray.push(checkbox.innerHTML);
+        else self.checkboxesArray.push(checkboxValue);
     }
     function search(j){
         var filterText = document.getElementById("search-field").value.trim().toUpperCase();
