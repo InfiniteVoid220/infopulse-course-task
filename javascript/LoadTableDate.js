@@ -13,14 +13,15 @@ alert("lol");
 function loadTable(tableDataJSON){
     var wrapper="<tbody>";
     for (let i=0;i<tableDataJSON.projects.length;i++){
-        wrapper=wrapper+"\n<tr>\n";
+        wrapper=wrapper+"<tr>";
         for (var key in tableDataJSON.projects[i]) {
-            wrapper=wrapper+"\n<td>"+tableDataJSON.projects[i][key]+"</td>\n";
+            wrapper=wrapper+"<td>"+tableDataJSON.projects[i][key]+"</td>";
         	if(key=="projectName"){
     			wrapper=wrapper+"<td><div></div></td>";
     		}
         }
-    wrapper=wrapper+"\n</tr>\n";
+    wrapper=wrapper+"<td><button></button></td>";
+    wrapper=wrapper+"</tr>";
     }
     wrapper=wrapper+"</tbody>";
     document.getElementById("data").innerHTML=wrapper;
