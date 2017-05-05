@@ -49,14 +49,14 @@
 	width: 7%;
 }
 
-.table-block th:nth-child(2),
-.table-block td:nth-child(2){
-	width: 0px;
+.table-block th:nth-child(2){
+	width: 0px !important;
 }
 
 .table-block tbody tr:nth-child(2n){
 	background-color: #0f1012;
 }
+
 
 .table-block button {
 	width: 100%;
@@ -96,6 +96,10 @@
 .table-block tr {
 	transition-property: background-color;
 	transition-duration: 0.5s;
+}
+
+.table-block td:nth-child(2){
+	width: 0px !important;
 }
 
 

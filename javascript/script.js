@@ -9,6 +9,8 @@ var toggleHandler = new menusToggleHandler();
 var tableHandler = new tableActions();
 var filterHandler = new filterByType();
 
+var tableDateLoader = new LoadTableDate();
+
 })(window, document);
 function convertToDate(dateStr) {
     let parts = dateStr.split(".");
