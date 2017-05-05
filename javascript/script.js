@@ -1,13 +1,13 @@
 (function (window, document) { 
-var tableDateLoader = new LoadTableDate();
-
 var sort = new SortTable();
+
 var typeDropdown = new DropdownList({'el': document.getElementsByClassName('type-dropdown')[0]});
 var customersDropdown= new DropdownList({'el': document.getElementsByClassName('customer-dropdown')[0]});
 
 var toggleHandler = new menusToggleHandler();
 var tableHandler = new tableActions();
 var filterHandler = new filterByType();
+var tableDateLoader = new LoadTableData(tableHandler);
 
 })(window, document);
 

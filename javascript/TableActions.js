@@ -8,16 +8,9 @@ function tableActions(){
     }
 
     this.initEvents = function(){
-        document.getElementById('butt-add-row').addEventListener('click', function(){
-            self.create_row();
+           document.getElementById('data').addEventListener('click', function(){
+                if(event.target.tagName == "BUTTON") deleteRow(event.target);
         });
-        var buttons_del = document.getElementById('data').getElementsByTagName('button');
-
-        for(let i = 0; i < buttons_del.length; i++){
-            buttons_del[i].addEventListener('click', function(){
-                deleteRow(this);
-            });
-        }
 
         document.getElementById('butt-add-row').addEventListener('click', function(){
             create_row();
