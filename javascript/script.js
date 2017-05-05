@@ -1,8 +1,8 @@
 (function (window, document) { 
 var sort = new SortTable();
 
-var typeDropdown = new DropdownList({'el': document.getElementsByClassName('type-dropdown')[0]});
-var customersDropdown= new DropdownList({'el': document.getElementsByClassName('customer-dropdown')[0]});
+var typeDropdown = new DropdownList({'el': document.getElementById("dropdown-type")});
+var customersDropdown= new DropdownList({'el': document.getElementById("dropdown-customer")});
 
 var toggleHandler = new menusToggleHandler();
 var tableHandler = new tableActions();

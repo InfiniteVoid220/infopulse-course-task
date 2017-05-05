@@ -1,14 +1,23 @@
 function tableActions(){
     var self = this;
+    var tbody;
+    var field_project_name;
+    var field_due_date;
+    var field_created;
+    var field_members;
+    var field_type_dropdown;
+    var field_customer_dropdown;
 
-    console.log("sadsf");
-    function deleteRow(x) {
-        var currentRow=x.parentElement.parentElement.rowIndex;
-        document.getElementById("data").deleteRow(currentRow);
-    }
+    this.init = function(){
+        this.tbody = document.getElementById('data');
+        this.field_project_name = document.getElementById("project-name");
+        this.field_due_date = document.getElementById("due-date");
+        this.field_created = document.getElementById("created");
+        this.field_members = document.getElementById("members");
+        this.field_type_dropdown = document.getElementById("dropdown-type").getElementsByClassName('dropdown-field')[0];
+        this.field_customer_dropdown = document.getElementById("dropdown-customer").getElementsByClassName('dropdown-field')[0];
 
-    this.initEvents = function(){
-           document.getElementById('data').addEventListener('click', function(){
+        this.tbody.addEventListener('click', function(){
                 if(event.target.tagName == "BUTTON") deleteRow(event.target);
         });
 
@@ -16,7 +25,7 @@ function tableActions(){
             create_row();
         });
     }
-    this.initEvents();
+    this.init();
     
     function create_row(){
         let fields = load_data();
@@ -31,20 +40,24 @@ function tableActions(){
             return;
         }
 
-        add_row(fields);
+        self.add_row(fields);
         
         clear_fields();
     }
 
     function clear_fields(){
-        document.getElementById("project-name").value = "";
-        document.getElementById("due-date").value = "";
-        document.getElementById("created").value = "";
-        document.getElementById("members").value = "";
-        document.getElementsByClassName('type-dropdown')[0].getElementsByClassName('dropdown-field')[0].innerHTML = "TYPE:";
-        document.getElementsByClassName('customer-dropdown')[0].getElementsByClassName('dropdown-field')[0].innerHTML = "Customers:";
+        self.field_project_name.value = "";
+        self.field_due_date.value = "";
+        self.field_created.value = "";
+        self.field_members.value = "";
+        self.field_type_dropdown.innerHTML = "TYPE:";
+        self.field_customer_dropdown.innerHTML = "Customers:";
     }
 
+    function deleteRow(x) {
+        var currentRow=x.parentElement.parentElement.rowIndex;
+        self.tbody.deleteRow(currentRow);
+    }
 
     function is_all_filled_in(fields){
         let is_all_filled_in = true;
@@ -87,18 +100,18 @@ function tableActions(){
         let fields = [];
         let date;
 
-        fields[0] = document.getElementById("project-name").value;
+        fields[0] = self.field_project_name.value;
         
-        date = new Date(document.getElementById("due-date").value);
+        date = new Date(self.field_due_date.value);
         fields[1] = dateDisplay(date);
 
-        date = new Date(document.getElementById("created").value);
+        date = new Date(self.field_created.value);
         fields[2] = dateDisplay(date);
 
-        fields[3] = document.getElementById("members").value;
-        fields[4] = document.getElementsByClassName('type-dropdown')[0].getElementsByClassName('dropdown-field')[0].innerHTML.toUpperCase();
+        fields[3] = self.field_members.value;
+        fields[4] = self.field_type_dropdown.innerHTML.toUpperCase();
         fields[5] = self.get_status(fields[1], fields[2]);
-        fields[6] = document.getElementsByClassName('customer-dropdown')[0].getElementsByClassName('dropdown-field')[0].innerHTML;      
+        fields[6] = self.field_customer_dropdown.innerHTML;      
         
         return fields;
     }
@@ -113,18 +126,17 @@ function tableActions(){
     }
 
     function is_dates_correct(){
-        let due_date = new Date(document.getElementById("due-date").value);
-        let created_date = new Date(document.getElementById("created").value);
+        let due_date = new Date(self.field_due_date.value);
+        let created_date = new Date(self.field_created.value);
 
         if(created_date > due_date)
             return false;
         return true;
     }
 
-    this.add_row  = function(fields) {
+    this.add_row = function(fields) {
 
-        var table = document.getElementById("data");
-        var row = table.insertRow(0);
+        var row = self.tbody.insertRow(0);
 
         if(fields[5] == "over") 
             row.classList.add("finished");
@@ -151,4 +163,3 @@ function tableActions(){
         }
     }
 }
-
