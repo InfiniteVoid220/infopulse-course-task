@@ -115,7 +115,7 @@ function tableActions(){
         let fields = [];
         let date;
 
-        fields[0] = document.getElementById("project-name").value;
+        fields[0] = document.getElementById("project-name").value.trim();
         
         date = new Date(document.getElementById("due-date").value);
         fields[1] = dateDisplay(date);
@@ -123,7 +123,7 @@ function tableActions(){
         date = new Date(document.getElementById("created").value);
         fields[2] = dateDisplay(date);
 
-        fields[3] = document.getElementById("members").value;
+        fields[3] = document.getElementById("members").value.trim();
         fields[4] = document.getElementsByClassName('type-dropdown')[0].getElementsByClassName('dropdown-field')[0].innerHTML.toUpperCase();
         fields[5] = self.get_status(fields[1], fields[2]);
         fields[6] = document.getElementsByClassName('customer-dropdown')[0].getElementsByClassName('dropdown-field')[0].innerHTML;      

@@ -70,9 +70,8 @@ function filterByType() {//фильтрация записей по типу
             self.checkboxesArray.splice(i,1);
         else self.checkboxesArray.push(checkbox.innerHTML);
     }
-
     function search(j){
-        var filterText = document.getElementById("search-field").value.toUpperCase();
+        var filterText = document.getElementById("search-field").value.trim().toUpperCase();
         projectName = self.rows[j].getElementsByTagName("td")[0].innerHTML.toUpperCase();
         return projectName.indexOf(filterText) > -1; 
     }
