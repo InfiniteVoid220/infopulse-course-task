@@ -1,22 +1,35 @@
 function tableActions(){
     var self = this;
-    
-    function deleteRow(x) {
-        var currentRow=x.parentElement.parentElement.rowIndex;
-        document.getElementById("data").deleteRow(currentRow);
-    }
 
-    this.initEvents = function(){
-       document.getElementById('data').addEventListener('click', function(){
-            if(event.target.tagName == "BUTTON") deleteRow(event.target);
-        });
+    var tbody;
+    var field_project_name;
+    var field_due_date;
+    var field_created;
+    var field_members;
+    var field_type_dropdown;
+    var field_customer_dropdown;
 
-        document.getElementById('butt-add-row').addEventListener('click', function(){
+    this.init = function(){
+        this.tbody = document.getElementById('data');
+        this.field_project_name = document.getElementById("project-name");
+        this.field_due_date = document.getElementById("due-date");
+        this.field_created = document.getElementById("created");
+        this.field_members = document.getElementById("members");
+        this.field_type_dropdown = document.getElementById("dropdown-type").getElementsByClassName('dropdown-field')[0];
+        this.field_customer_dropdown = document.getElementById("dropdown-customer").getElementsByClassName('dropdown-field')[0];
+
+        this.tbody.addEventListener('click', function(){
+                if(event.target.tagName == "BUTTON") deleteRow(event.target);
+        }
+     document.getElementById('butt-add-row').addEventListener('click', function(){
             create_row();
         });
     }
-    this.initEvents();
-
+    this.init(); 
+  function deleteRow(x) {
+        var currentRow=x.parentElement.parentElement.rowIndex;
+        document.getElementById("data").deleteRow(currentRow);
+    }
     this.add_row  = function(fields) {
 
         var table = document.getElementById("data");
@@ -41,6 +54,7 @@ function tableActions(){
                 cell.appendChild(but);
                 continue;
             }
+
     
             row.insertCell(i).innerHTML = fields[arguments_counter];
             arguments_counter++;
@@ -65,14 +79,18 @@ function tableActions(){
     }
 
     function clear_fields(){
-        document.getElementById("project-name").value = "";
-        document.getElementById("due-date").value = "";
-        document.getElementById("created").value = "";
-        document.getElementById("members").value = "";
-        document.getElementsByClassName('type-dropdown')[0].getElementsByClassName('dropdown-field')[0].innerHTML = "TYPE:";
-        document.getElementsByClassName('customer-dropdown')[0].getElementsByClassName('dropdown-field')[0].innerHTML = "Customers:";
+        self.field_project_name.value = "";
+        self.field_due_date.value = "";
+        self.field_created.value = "";
+        self.field_members.value = "";
+        self.field_type_dropdown.innerHTML = "TYPE:";
+        self.field_customer_dropdown.innerHTML = "Customers:";
     }
 
+    function deleteRow(x) {
+        var currentRow=x.parentElement.parentElement.rowIndex;
+        self.tbody.deleteRow(currentRow);
+    }
 
     function is_all_filled_in(fields){
         let is_all_filled_in = true;
@@ -115,18 +133,21 @@ function tableActions(){
         let fields = [];
         let date;
 
-        fields[0] = document.getElementById("project-name").value.trim();
+
+        fields[0] = self.field_project_name.value.trim();
         
-        date = new Date(document.getElementById("due-date").value);
+        date = new Date(self.field_due_date.value);
         fields[1] = dateDisplay(date);
 
-        date = new Date(document.getElementById("created").value);
+        date = new Date(self.field_created.value);
         fields[2] = dateDisplay(date);
 
-        fields[3] = document.getElementById("members").value.trim();
-        fields[4] = document.getElementsByClassName('type-dropdown')[0].getElementsByClassName('dropdown-field')[0].innerHTML.toUpperCase();
+
+        fields[3] = self.field_members.value.trim();
+        fields[4] = self.field_type_dropdown.innerHTML.toUpperCase().trim();
+
         fields[5] = self.get_status(fields[1], fields[2]);
-        fields[6] = document.getElementsByClassName('customer-dropdown')[0].getElementsByClassName('dropdown-field')[0].innerHTML;      
+        fields[6] = self.field_customer_dropdown.innerHTML;      
         
         return fields;
     }
@@ -141,14 +162,42 @@ function tableActions(){
     }
 
     function is_dates_correct(){
-        let due_date = new Date(document.getElementById("due-date").value);
-        let created_date = new Date(document.getElementById("created").value);
+        let due_date = new Date(self.field_due_date.value);
+        let created_date = new Date(self.field_created.value);
 
         if(created_date > due_date)
             return false;
         return true;
     }
 
+
+    this.add_row = function(fields) {
+
+        var row = self.tbody.insertRow(0);
+
+        if(fields[5] == "over") 
+            row.classList.add("finished");
+
+
+        for(let i = 0, arguments_counter = 0; i < 9; i++){
+            if(i == 1){
+                row.insertCell(i).appendChild(document.createElement("div"));
+                continue;
+            }
+            if(i == 8){
+                var cell = row.insertCell(i);
+                var but = document.createElement('button');
+                but.addEventListener('click', function(){
+                    deleteRow(this);
+                });
+
+                cell.appendChild(but);
+                continue;
+            }
     
+            row.insertCell(i).innerHTML = fields[arguments_counter];
+            arguments_counter++;
+        }
+    }
 }
 
