@@ -136,7 +136,7 @@ function tableActions(){
         return true;
     }
 
-    function add_row(fields) {
+    this.add_row  = function(fields) {
 
         var table = document.getElementById("data");
         var row = table.insertRow(0);
@@ -147,7 +147,7 @@ function tableActions(){
 
         for(let i = 0, arguments_counter = 0; i < 9; i++){
             if(i == 1){
-                row.insertCell(i);
+                row.insertCell(i).appendChild(document.createElement("div"));
                 continue;
             }
             if(i == 8){
