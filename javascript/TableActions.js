@@ -20,13 +20,14 @@ function tableActions(){
 
         this.tbody.addEventListener('click', function(){
                 if(event.target.tagName == "BUTTON") deleteRow(event.target);
-        }
-     document.getElementById('butt-add-row').addEventListener('click', function(){
+        });
+
+        document.getElementById('butt-add-row').addEventListener('click', function(){
             create_row();
         });
     }
     this.init(); 
-  function deleteRow(x) {
+    function deleteRow(x) {
         var currentRow=x.parentElement.parentElement.rowIndex;
         document.getElementById("data").deleteRow(currentRow);
     }
@@ -200,4 +201,6 @@ function tableActions(){
         }
     }
 }
+
+
 
