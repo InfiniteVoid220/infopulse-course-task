@@ -19,14 +19,14 @@ function LoadTableData(tableHandler) {
             for(let key in tableDataJSON.projects[i]){
 
                 if(key == "status") { //определить статус проекта автоматически
-                    tableDataJSON.projects[i][key] = tableHandler.get_status(tableDataJSON.projects[i].dueDate, tableDataJSON.projects[i].created);
+                    tableDataJSON.projects[i][key] = tableHandler.getStatus(tableDataJSON.projects[i].dueDate, tableDataJSON.projects[i].created);
                 }
 
                 data[properties_counter] = tableDataJSON.projects[i][key];
 
                 properties_counter++;
             }
-            tableHandler.add_row(data);
+            tableHandler.addRow(data);
         }        
     }
 
