@@ -19,9 +19,7 @@ function LoadTableData(tableHandler) {
             for(let key in tableDataJSON.projects[i]){
 
                 if(key == "status") { //определить статус проекта автоматически
-                    var dueDate = convertToDate(tableDataJSON.projects[i].dueDate);
-                    var createDate = convertToDate(tableDataJSON.projects[i].created);
-                    tableDataJSON.projects[i][key] = tableHandler.get_status(dueDate,createDate);
+                    tableDataJSON.projects[i][key] = tableHandler.get_status(tableDataJSON.projects[i].dueDate, tableDataJSON.projects[i].created);
                 }
 
                 data[properties_counter] = tableDataJSON.projects[i][key];
