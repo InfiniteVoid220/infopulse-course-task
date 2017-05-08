@@ -1,8 +1,7 @@
 /*             ISCROLL            */
-(function(window, document, Math){
 	var myScroll; 
 
-	function loaded () {
+	function refreshScroll() {
 	    myScroll = new IScroll('#wrapper-scroll', {scrollbars: false, mouseWheel: true, interactiveScrollbars: true });
 	}
 	
@@ -10,6 +9,3 @@
 	    capture: false,
 	    passive: false
 	} : false);
-
-	window.addEventListener('load', loaded);
-})(window, document, Math);

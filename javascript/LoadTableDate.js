@@ -27,6 +27,7 @@ function LoadTableData(tableHandler) {
                 properties_counter++;
             }
             tableHandler.add_row(data);
+            refreshScroll();
         }        
     }
 
