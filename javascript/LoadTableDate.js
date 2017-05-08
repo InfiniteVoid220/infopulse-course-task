@@ -27,11 +27,13 @@ function LoadTableData(tableHandler) {
                 properties_counter++;
             }
             tableHandler.addRow(data);
-            refreshScroll();//обновить скрол под добавленый контент
-        }        
+          
+        }     
+
+        refreshScroll();         
     }
 
-window.addEventListener('load', function(){
+    window.addEventListener('load', function(){
         httpGetAsync('table.json', function(data){
             loadTable(JSON.parse(data));
         })
