@@ -20,12 +20,14 @@ function tableActions(){
 
         this.tbody.addEventListener('click', function(){
                 if(event.target.tagName == "BUTTON") {
-                    deleteRow(event.target); refreshScroll();
+                    deleteRow(event.target); 
+                    refreshScroll();//обновить скрол под добавленый контент
                 }
         });
 
         document.getElementById('butt-add-row').addEventListener('click', function(){
-           createRow(); refreshScroll();
+           createRow(); 
+           refreshScroll();//обновить скрол под добавленый контент
         });
     }
     this.init();
@@ -146,7 +148,6 @@ function tableActions(){
 
         if (fields[5] == "over") 
             row.classList.add("finished");
-
 
         for (let i = 0, arguments_counter = 0; i < numberOfCells; i++){
             if (i == 1){
