@@ -20,18 +20,18 @@ function menusToggleHandler() { //обрабочик всплывания мен
    
     function showOrHideLeft(){//работа слевой панелью
         if(this.isLeftMenuHiden) {
-            self.leftMenu.style.transform="translateX(0)";
-            self.tabel.style.transform ="scaleX(1)";
+            self.leftMenu.classList.remove("hide-left-menu");
+            self.tabel.classList.remove("stretchTable");
             this.isLeftMenuHiden=false;
         } else {
-            self.leftMenu.style.transform="translateX(-370px)";
-            self.tabel.style.transform = "scaleX(1.238) translateX(-130px)";
+            self.leftMenu.classList.add("hide-left-menu");
+            self.tabel.classList.add("stretchTable");
             this.isLeftMenuHiden=true;
         }
     }
 
     function showRightMenu (){//отобразить правую панель
-        self.rightMenu.style.transform="translateX(-370px) ";
+        self.rightMenu.classList.add("show-right-menu");
     }
 
     function hideRightMenu () {
@@ -40,7 +40,7 @@ function menusToggleHandler() { //обрабочик всплывания мен
                 || event.target.matches(".side-menu-right *")) {
                 return;
             } else {
-               self.rightMenu.style.transform="translateX(0) ";
+               self.rightMenu.classList.remove("show-right-menu");
             }
         }
     }

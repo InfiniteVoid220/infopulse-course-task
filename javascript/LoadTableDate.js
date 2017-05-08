@@ -27,7 +27,7 @@ function LoadTableData(tableHandler) {
                 properties_counter++;
             }
             tableHandler.addRow(data);
-            refreshScroll();
+            refreshScroll();//обновить скрол под добавленый контент
         }        
     }
 

@@ -58,3 +58,8 @@
 .checkboxes input:checked + label{
     background-position: 0 -38px;
 }
+
+.hide-left-menu{
+	transform: translateX(-370px);
+}
+

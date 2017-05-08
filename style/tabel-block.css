@@ -124,3 +124,8 @@
 #wrapper-scroll table {
 	position: absolute;
 }
+
+.stretchTable{
+	transform:scaleX(1.238) translateX(-130px);
+}
+

@@ -77,3 +77,7 @@ ul>li:hover{
 .show+.dropdown-options{
 	display: block;
 }
+
+.show-right-menu{
+	transform: translateX(-370px);
+}
