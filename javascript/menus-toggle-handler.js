@@ -1,4 +1,4 @@
-function menusToggleHandler () { //обрабочик всплывания менюшек
+function menusToggleHandler() { //обрабочик всплывания менюшек
     var self = this;
 
     this.init = function(){
