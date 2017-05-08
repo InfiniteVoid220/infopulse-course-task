@@ -14,8 +14,10 @@ function LoadTableData(tableHandler) {
     function loadTable(tableDataJSON){
         
         for(let i = 0; i < tableDataJSON.projects.length; i++){
+
             let data = [];
             let properties_counter = 0;
+
             for(let key in tableDataJSON.projects[i]){
 
                 if(key == "status") { //определить статус проекта автоматически
@@ -26,8 +28,8 @@ function LoadTableData(tableHandler) {
 
                 properties_counter++;
             }
+            
             tableHandler.addRow(data);
-          
         }     
 
         refreshScroll();         
