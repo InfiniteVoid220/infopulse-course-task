@@ -6,7 +6,7 @@ var customersDropdown= new DropdownList({'el': document.getElementById("dropdown
 
 var toggleHandler = new menusToggleHandler();
 var tableHandler = new tableActions();
-var filterHandler = new filterByType();
+var filterHandler = new Filtration();
 var tableDateLoader = new LoadTableData(tableHandler);
 
 })(window, document);

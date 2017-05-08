@@ -1,5 +1,5 @@
-//проверь ИМЕНА
-function filterByType() {//фильтрация записей по типу
+
+function Filtration() {//фильтрация записей по типу
     var self = this;
 
     this.init = function(){
@@ -20,8 +20,7 @@ function filterByType() {//фильтрация записей по типу
         document.getElementById("search-date").addEventListener('change', function(){
             self.filtering();
         });
-
-         document.getElementById("lupa").addEventListener('click', function(){
+        document.getElementById("lupa").addEventListener('click', function(){
             self.filtering();
         });
         document.getElementById("search-field").addEventListener('keypress',function(){
@@ -40,11 +39,13 @@ function filterByType() {//фильтрация записей по типу
     this.filtering = function(){ 
         displayAllRows();
         this.rows = document.getElementById("data").getElementsByTagName("tr");
+
         for(var j = 0; j < self.rows.length; j++){
             if(!isTypeInList(j) || !isDataInInterval(j) || !search(j)){
                 self.rows[j].style.display = "none";
             }
         }
+
     }
 
     function isTypeInList(j){//проверяет есть ли такой тип проекта в списке фильтрации 
@@ -54,7 +55,7 @@ function filterByType() {//фильтрация записей по типу
     }
 
     function isDataInInterval(j){
-        var columns=self.rows[j].getElementsByTagName("td");
+        var columns = self.rows[j].getElementsByTagName("td");
         var dueDate = convertToDate(columns[2].innerHTML);
         var createdDate = convertToDate(columns[3].innerHTML);
         var filterDate = new Date(document.getElementById("search-date").value);
