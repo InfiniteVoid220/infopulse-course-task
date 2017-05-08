@@ -19,11 +19,13 @@ function tableActions(){
         this.field_customer_dropdown = document.getElementById("dropdown-customer").getElementsByClassName('dropdown-field')[0];
 
         this.tbody.addEventListener('click', function(){
-                if (event.target.tagName == "BUTTON") deleteRow(event.target);
+                if(event.target.tagName == "BUTTON") {
+                    deleteRow(event.target); refreshScroll();
+                }
         });
 
         document.getElementById('butt-add-row').addEventListener('click', function(){
-            createRow();
+           createRow(); refreshScroll();
         });
     }
     this.init();
