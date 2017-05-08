@@ -4,7 +4,9 @@
 	width: 1550px;
 	height: 1014px;
 	display: block;
+
     transition: transform 0.2s;
+	
 	background-color: #0a0b0d;
 } 
 
@@ -127,5 +129,6 @@
 
 .stretchTable{
 	transform:scaleX(1.238) translateX(-130px);
+
 }
 

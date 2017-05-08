@@ -7,6 +7,10 @@ function tableActions(){
     var field_members;
     var field_type_dropdown;
     var field_customer_dropdown;
+
+    var button_create_row;
+    var button_create_row_is_active;
+
     const numberOfCells = 9;
 
     this.init = function(){
@@ -17,6 +21,8 @@ function tableActions(){
         this.field_members = document.getElementById("members");
         this.field_type_dropdown = document.getElementById("dropdown-type").getElementsByClassName('dropdown-field')[0];
         this.field_customer_dropdown = document.getElementById("dropdown-customer").getElementsByClassName('dropdown-field')[0];
+
+        this.button_create_row = document.getElementById("butt-add-row");
 
         this.tbody.addEventListener('click', function(){
                 if(event.target.tagName == "BUTTON") {
@@ -29,25 +35,49 @@ function tableActions(){
            createRow(); 
            refreshScroll();//обновить скрол под добавленый контент
         });
+
+        this.field_project_name.addEventListener('input', highlightCreateButton);
+        this.field_due_date.addEventListener('input', highlightCreateButton);
+        this.field_created.addEventListener('input', highlightCreateButton);
+        this.field_members.addEventListener('input', highlightCreateButton);
+        document.getElementById("dropdown-type").getElementsByClassName('dropdown-options')[0].addEventListener('click', highlightCreateButton);
+        document.getElementById("dropdown-customer").getElementsByClassName('dropdown-options')[0].addEventListener('click', highlightCreateButton);
+    
+        highlightCreateButton();
+        button_create_row_is_active = false;
     }
-    this.init();
+
+    function highlightCreateButton() {
+        let fields = loadData();
+        if( isAllFilledIn(fields) ){
+            self.button_create_row.style.opacity = 1;
+            button_create_row_is_active = true;
+        }
+        else{
+            self.button_create_row.style.opacity = 0.5;
+            button_create_row_is_active = false;
+        }
+    }
     
     function createRow(){
-        let fields = loadData();
+        if(button_create_row_is_active){
+            let fields = loadData();
 
-        if ( !isAllFilledIn(fields) ){
-            alert("Fill all fields");
-            return;
+            if ( !isAllFilledIn(fields) ){
+                alert("Fill all fields");
+                return;
+            }
+
+            if ( !isDatesCorrect() ){
+                alert("incorrect dates!");
+                return;
+            }
+
+            self.addRow(fields);
+            
+            clearFields();
+            highlightCreateButton();
         }
-
-        if ( !isDatesCorrect() ){
-            alert("incorrect dates!");
-            return;
-        }
-
-        self.addRow(fields);
-        
-        clearFields();
     }
 
     function clearFields(){
@@ -60,8 +90,10 @@ function tableActions(){
     }
 
     function deleteRow(x) {
-        var currentRow = x.parentElement.parentElement.rowIndex;
-        self.tbody.deleteRow(currentRow);
+        if ( confirm("Удалить проект?") ){
+            let currentRow = x.parentElement.parentElement.rowIndex;
+            self.tbody.deleteRow(currentRow);
+        }
     }
 
     function isAllFilledIn(fields){
@@ -157,10 +189,6 @@ function tableActions(){
             if (i == 8){
                 var cell = row.insertCell(i);
                 var but = document.createElement('button');
-                but.addEventListener('click', function(){
-                    deleteRow(this);
-                });
-
                 cell.appendChild(but);
                 continue;
             }
@@ -169,4 +197,6 @@ function tableActions(){
             arguments_counter++;
         }
     }
+
+    this.init();
 }
