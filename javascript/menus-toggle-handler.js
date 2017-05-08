@@ -18,15 +18,15 @@ function menusToggleHandler() { //обрабочик всплывания мен
         document.getElementById('show-right').addEventListener('click',showRightMenu);
     }
    
-    function showOrHideLeft(){//работа слевой панелью
+    function showOrHideLeft(){//работа с левой панелью
         if(this.isLeftMenuHiden) {
             self.leftMenu.classList.remove("hide-left-menu");
             self.tabel.classList.remove("stretchTable");
-            this.isLeftMenuHiden=false;
+            this.isLeftMenuHiden = false;
         } else {
             self.leftMenu.classList.add("hide-left-menu");
             self.tabel.classList.add("stretchTable");
-            this.isLeftMenuHiden=true;
+            this.isLeftMenuHiden = true;
         }
     }
 
@@ -35,7 +35,7 @@ function menusToggleHandler() { //обрабочик всплывания мен
     }
 
     function hideRightMenu () {
-        if(!event.target.matches("#show-right")) {//закрыть меню
+        if (!event.target.matches("#show-right")) {//закрыть меню
             if (event.target.matches(".side-menu-right") 
                 || event.target.matches(".side-menu-right *")) {
                 return;
