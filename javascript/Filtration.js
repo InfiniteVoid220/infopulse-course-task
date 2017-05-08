@@ -10,7 +10,7 @@ function Filtration() {//фильтрация записей по типу
 
     this.initEvents = function(){
         var checkboxes = document.getElementById("checkboxes").getElementsByTagName("label");
-        for(let i = 0; i < checkboxes.length; i++){//убрать цыклы
+        for (let i = 0; i < checkboxes.length; i++){//убрать цыклы
             checkboxes[i].addEventListener('click', function(){
                 self.toggleFilterList(this.innerHTML);
                 self.filtering();
@@ -24,7 +24,7 @@ function Filtration() {//фильтрация записей по типу
             self.filtering();
         });
         document.getElementById("search-field").addEventListener('keypress',function(){
-            if(event.keyCode==13) 
+            if (event.keyCode == 13) 
                 self.filtering();
         });
 
@@ -32,7 +32,7 @@ function Filtration() {//фильтрация записей по типу
     
     function displayAllRows(){
         for(var j = 0; j < self.rows.length; j++){
-            self.rows[j].style.display = "";
+            self.rows[j].style.display = "table-row";
         }
     }
 
@@ -41,7 +41,7 @@ function Filtration() {//фильтрация записей по типу
         this.rows = document.getElementById("data").getElementsByTagName("tr");
 
         for(var j = 0; j < self.rows.length; j++){
-            if(!isTypeInList(j) || !isDataInInterval(j) || !search(j)){
+            if ( !isTypeInList(j) || !isDataInInterval(j) || !search(j) ){
                 self.rows[j].style.display = "none";
             }
         }
@@ -50,7 +50,7 @@ function Filtration() {//фильтрация записей по типу
 
     function isTypeInList(j){//проверяет есть ли такой тип проекта в списке фильтрации 
         var projectType = self.rows[j].getElementsByTagName("td")[5].innerHTML;
-        if(self.checkboxesArray.length == 0) return true;
+        if (self.checkboxesArray.length == 0) return true;
         return self.checkboxesArray.indexOf(projectType) > -1;
     }
 
@@ -67,8 +67,8 @@ function Filtration() {//фильтрация записей по типу
 
     this.toggleFilterList = function (checkboxValue){ //добавить тип в список если его нет или удалить если есть
         var i = self.checkboxesArray.indexOf(checkboxValue);
-        if(i>-1)
-            self.checkboxesArray.splice(i,1);
+        if (i > -1)
+            self.checkboxesArray.splice(i, 1);
         else self.checkboxesArray.push(checkboxValue);
     }
     function search(j){

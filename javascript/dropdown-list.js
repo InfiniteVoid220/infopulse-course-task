@@ -33,7 +33,7 @@ function DropdownList(options){//класс для выпадающего спи
     }
 
     this.hideOnOutClick = function (el){
-        if(el!=this.selectedItem) {
+        if(el != this.selectedItem) {
             this.selectedItem.classList.remove("show");
         }
     }
