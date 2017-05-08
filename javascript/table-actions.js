@@ -60,8 +60,10 @@ function tableActions(){
     }
 
     function deleteRow(x) {
-        var currentRow = x.parentElement.parentElement.rowIndex;
-        self.tbody.deleteRow(currentRow);
+        if ( confirm("Удалить проект?") ){
+            let currentRow = x.parentElement.parentElement.rowIndex;
+            self.tbody.deleteRow(currentRow);
+        }
     }
 
     function isAllFilledIn(fields){
@@ -157,10 +159,6 @@ function tableActions(){
             if (i == 8){
                 var cell = row.insertCell(i);
                 var but = document.createElement('button');
-                but.addEventListener('click', function(){
-                    deleteRow(this);
-                });
-
                 cell.appendChild(but);
                 continue;
             }
